@@ -14,6 +14,9 @@ from app.simulacao import simular_partida
 from app.estatisticas import exibir_estatisticas_time
 from app.classificacao import gerar_tabela_classificacao, gerar_tabela_artilharia, exibir_classificacao_com_logos
 
+print("Diretório atual:", os.getcwd())
+print("Arquivos na pasta utils:", os.listdir('utils') if os.path.exists('utils') else "Pasta utils não encontrada")
+
 # NOVA IMPORTAÇÃO PARA TORNEIOS
 try:
     from app.torneios import pagina_torneios, exibir_classificacao_geral_torneios
