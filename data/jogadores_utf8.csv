@@ -1,0 +1,107 @@
+id,nome,clube_id,posicao,habilidade
+1,Pedro,1,ATA,83
+2,Arrascaeta,1,MEI,84
+3,Felipe Anderson,2,MEI,80
+4,Vitor Roque,2,ATA,81
+5,Calleri,3,ATA,82
+6,Luciano,3,MEI,80
+7,Rodrygo,4,MEI,87
+8,Vinicius Junior,4, ATA,91
+9,Lamine Yamal,5,ATA,90
+10,Dani Olmo,5,MEI,88
+11,Memphis Depay,6,ATA,86
+12,Rodrigo Garro,6,MEI,82
+13,Enzo Fernandes,7,MEI,86
+14,Nicolas Jackson,7,ATA,85
+15,Mohamed Salah,8,ATA,88
+16,Mac Allister,8,MEI,87
+17,Erling Haaland,9,ATA,90
+18,Kevin De Bruyne,9,MEI,89
+19,Rodri,9,VOL,88
+20,Savinho,9,ATA,84
+21,Neymar,10,ATA,88
+22,Yeferson Soteldo,10,MEI,82
+23,Guilherme,10,ATA,79
+24,Thaciano,10,MEI,78
+25,Yuri Alberto,6,ATA,80
+26,Igor Coronado,6,MEI,79
+27,Bruno Henrique,1,ATA,82
+28,Michael,1,MEI,81
+29,Richard Rios,2,MEI,81
+30,Raphael Veiga,2,MEI,83
+31,Ferreirinha,3,ATA,79
+32,Oscar,3,MEI,83
+33,Kylian Mbappe,4,ATA,92
+34,Jude Bellingham,4,MEI,90
+35,Raphinha,5,ATA,88
+36,Pedri,5,MEI,87
+37,Cole Palmer,7,MEI,89
+38,Jadon Sancho,7,ATA,86
+39,Darwin Nunez,8,ATA,89
+40,Dominik Szoboszlai,8,MEI,85
+41,Julian Alvarez,11,ATA,87
+42,Antoine Griezmann,11,ATA,90
+43,Rodrigo de Paul,11,MEI,87
+44,Koke,11,MEI,85
+45,Romelu Lukaku,12,ATA,86
+46,David Neres,12,ATA,84
+47,Scott McTominay,12,MEI,86
+48,Billy Gilmour,12,MEI,84
+49,Ousmane Dembele,13,ATA,88
+50,Khvicha Kvaratskhelia,13,ATA,87
+51,Vitinha,13,MEI,86
+52,Fabian Ruiz,13,MEI,85
+53,Harry Kane,14,ATA,91
+54,Jamal Musiala,14,MEI,92
+55,Leroy Sane,14,ATA,86
+56,Michael Olise,14,MEI,87
+57,Lautaro Martinez,15,ATA,88
+58,Henrikh Mkhitaryan,15,MEI,87
+59,Marcus Thuram,15,ATA,85
+60,Hakan Calhanoglu,15,MEI,86
+61,Bruno Fernandes,16,MEI,89
+62,Alejandro Garnacho,16,ATA,86
+63,Mason Mount,16,MEI,85
+64,Amad Diallo,16,ATA,84
+65,Alan Patrick,17,MEI,82
+66,Enner Valencia,17,ATA,84
+67,Oscar Romero,17,MEI,81
+68,Rafael Borre,17,ATA,80
+69,Martin Braithwaite,18,ATA,83
+70,Gustavo Cuellar,18,MEI,79
+71,Mathias Villasanti,18,MEI,82
+72,Cristian Pavon,18,ATA,80
+73,Matheus Pereira,19,MEI,85
+74,Gabriel Barbosa,19,ATA,83
+75,Kaio Jorge,19,ATA,80
+76,Matheus Henrique,19,MEI,81
+77,Hulk,20,ATA,84
+78,Rony,20,ATA,80
+79,Gustavo Scarpa,20,MEI,81
+80,Igor Gomes,20,MEI,82
+81,Serhou Guirassy,21,ATA,86
+82,Julian Brandt,21,MEI,85
+83,Emre Can,21,MEI,83
+84,Karim Adeyemi,21,ATA,83
+85,Florian Wirtz,22,MEI,88
+86,Granit Xhaka,22,MEI,85
+87,Patrik Schick,22,ATA,86
+88,Victor Boniface,22,ATA,84
+89,German Cano,23,ATA,81
+90,Jhon Arias,23,MEI,80
+91,Paulo Henrique Ganso,23,MEI,80
+92,Keno,23,ATA,79
+93,Dusan Vlahovic,24,ATA,87
+94,Douglas Luiz,24,MEI,85
+95,Kenan Y?ld?z,24,ATA,84
+96,Khephren Thuram,24,MEI,83
+97,Philippe Coutinho,25,MEI,87
+98,Pablo Vegetti,25,ATA,80
+99,Dimitri Payet,25,MEI,83
+100,Loide Augusto,25,ATA,77
+101,Jefferson Savarino,26,ATA,82
+102,Igor Jesus,26,ATA,81
+103,Bukayo Saka,27,ATA,87
+104,Gabriel Martinelli,27,ATA,86
+105,Martin Odegaard,27,MEI,88
+106,Declan Rice,27,MEI,89
