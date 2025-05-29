@@ -1,0 +1,435 @@
+data,time_casa,time_visitante,gols_casa,gols_visitante,vencedor,marcadores_gols
+2025-05-26 12:59:38,Palmeiras,Flamengo,0,0,Empate,
+2025-05-26 13:00:03,Real Madrid,Barcelona,0,1,Barcelona,Pedri:76:Barcelona
+2025-05-26 13:03:09,Cruzeiro,Atletico MG,1,2,Atletico MG,Gustavo Scarpa:19:Atletico MG;Hulk:42:Atletico MG;Kaio Jorge:66:Cruzeiro
+2025-05-26 13:08:14,Manchester United,Chelsea,2,0,Manchester United,Alejandro Garnacho:13:Manchester United;Alejandro Garnacho:68:Manchester United
+2025-05-26 13:11:20,Liverpool,Manchester City,1,1,Empate,Mac Allister:28:Liverpool;Savinho:66:Manchester City
+2025-05-26 14:16:35,Real Madrid,Barcelona,1,1,Empate,Kylian Mbappe:90:Real Madrid;Raphinha:90:Barcelona
+2025-05-26 16:45:23,Napoli,Internazionale,0,0,Empate,
+2025-05-26 16:47:04,Internacional,Flamengo,0,0,Empate,
+2025-05-26 16:48:48,Palmeiras,Chelsea,0,0,Empate,
+2025-05-26 16:49:10,Palmeiras,Santos,1,1,Empate,Felipe Anderson:19:Palmeiras;Yeferson Soteldo:42:Santos
+2025-05-26 19:24:51,Manchester United,Real Madrid,0,1,Real Madrid,Kylian Mbappe:43:Real Madrid
+2025-05-26 19:25:00,Real Madrid,Manchester United,0,0,Empate,
+2025-05-26 19:25:11,Liverpool,PSG,0,1,PSG,Ousmane Dembele:89:PSG
+2025-05-26 19:25:24,PSG,Liverpool,1,1,Empate,Mac Allister:45:Liverpool;Ousmane Dembele:69:PSG
+2025-05-26 19:25:34,Atletico Madrid,Chelsea,0,0,Empate,
+2025-05-26 19:25:43,Chelsea,Atletico Madrid,0,0,Empate,
+2025-05-26 19:25:52,Barcelona,Manchester City,0,0,Empate,
+2025-05-26 19:26:00,Manchester City,Barcelona,0,0,Empate,
+2025-05-26 19:26:21,Manchester City,Manchester United,0,0,Empate,
+2025-05-26 19:26:32,Manchester United,Manchester City,1,0,Manchester United,Mason Mount:36:Manchester United
+2025-05-26 19:26:44,Chelsea,PSG,0,0,Empate,
+2025-05-26 19:26:57,PSG,Chelsea,2,0,PSG,Khvicha Kvaratskhelia:62:PSG;Fabian Ruiz:74:PSG
+2025-05-26 19:27:06,Atletico Madrid,Real Madrid,0,0,Empate,
+2025-05-26 19:27:16,Real Madrid,Atletico Madrid,0,0,Empate,
+2025-05-26 19:27:28,Barcelona,Liverpool,1,0,Barcelona,Raphinha:79:Barcelona
+2025-05-26 19:27:39,Liverpool,Barcelona,0,2,Barcelona,Lamine Yamal:45:Barcelona;Pedri:79:Barcelona
+2025-05-26 19:30:27,Real Madrid,PSG,0,0,Empate,
+2025-05-26 19:30:38,Manchester City,Napoli,0,1,Napoli,David Neres:49:Napoli
+2025-05-26 19:30:49,Atletico Madrid,Flamengo,1,0,Atletico Madrid,Rodrigo de Paul:27:Atletico Madrid
+2025-05-26 19:30:59,Corinthians,Internacional,0,0,Empate,
+2025-05-26 19:31:10,Internazionale,Gremio,0,0,Empate,
+2025-05-26 19:31:20,Santos,Cruzeiro,0,0,Empate,
+2025-05-26 19:31:31,Palmeiras,Bayer de Munique,0,0,Empate,
+2025-05-26 19:31:42,Sao Paulo,Atletico MG,1,0,Sao Paulo,Calleri:82:Sao Paulo
+2025-05-26 19:35:45,Bayer de Munique,Real Madrid,1,1,Empate,Jamal Musiala:14:Bayer de Munique;Jude Bellingham:45:Real Madrid
+2025-05-26 19:40:46,Sao Paulo,Santos,0,1,Santos,Thaciano:90:Santos
+2025-05-26 19:40:55,Palmeiras,Corinthians,0,0,Empate,
+2025-05-26 19:48:36,Real Madrid,Bayer de Munique,1,0,Real Madrid,Kylian Mbappe:45:Real Madrid
+2025-05-26 19:48:49,Flamengo,Liverpool,1,1,Empate,Mac Allister:45:Liverpool;Pedro:50:Flamengo
+2025-05-26 19:49:27,Real Madrid,Liverpool,0,1,Liverpool,Darwin Nunez:57:Liverpool
+2025-05-26 19:50:44,Cruzeiro,Barcelona,0,0,Empate,
+2025-05-26 19:50:55,Manchester City,PSG,0,0,Empate,
+2025-05-26 19:51:13,PSG,Barcelona,1,1,Empate,Dani Olmo:4:Barcelona;Vitinha:20:PSG
+2025-05-26 19:59:40,Flamengo,Real Madrid,0,0,Empate,
+2025-05-26 19:59:53,Real Madrid,Flamengo,1,2,Flamengo,Kylian Mbappe:17:Real Madrid;Bruno Henrique:63:Flamengo;Pedro:81:Flamengo
+2025-05-26 20:00:02,Gremio,Santos,0,0,Empate,
+2025-05-26 20:00:13,Santos,Gremio,1,0,Santos,Neymar:51:Santos
+2025-05-26 20:00:22,PSG,Manchester City,0,0,Empate,
+2025-05-26 20:00:36,Manchester City,PSG,1,2,PSG,Ousmane Dembele:14:PSG;Fabian Ruiz:27:PSG;Erling Haaland:44:Manchester City
+2025-05-26 20:00:50,Chelsea,Palmeiras,1,2,Palmeiras,Vitor Roque:8:Palmeiras;Cole Palmer:29:Chelsea;Felipe Anderson:84:Palmeiras
+2025-05-26 20:01:00,Palmeiras,Chelsea,1,0,Palmeiras,Felipe Anderson:79:Palmeiras
+2025-05-26 20:01:12,Cruzeiro,Internacional,1,0,Cruzeiro,Gabriel Barbosa:90:Cruzeiro
+2025-05-26 20:01:22,Internacional,Cruzeiro,1,0,Internacional,Rafael Borre:12:Internacional
+2025-05-26 20:01:37,Manchester United,Sao Paulo,1,2,Sao Paulo,Luciano:15:Sao Paulo;Luciano:39:Sao Paulo;Amad Diallo:57:Manchester United
+2025-05-26 20:01:51,Sao Paulo,Manchester United,2,1,Sao Paulo,Mason Mount:8:Manchester United;Oscar:25:Sao Paulo;Calleri:90:Sao Paulo
+2025-05-26 20:02:01,Bayer de Munique,Liverpool,0,0,Empate,
+2025-05-26 20:02:10,Liverpool,Bayer de Munique,0,0,Empate,
+2025-05-26 20:02:20,Barcelona,Internazionale,0,0,Empate,
+2025-05-26 20:02:30,Internazionale,Barcelona,0,0,Empate,
+2025-05-26 20:03:00,Palmeiras,Sao Paulo,1,1,Empate,Vitor Roque:27:Palmeiras;Oscar:78:Sao Paulo
+2025-05-26 20:03:09,Sao Paulo,Palmeiras,0,0,Empate,
+2025-05-26 20:03:20,PSG,Barcelona,1,0,PSG,Fabian Ruiz:90:PSG
+2025-05-26 20:03:29,Barcelona,PSG,1,0,Barcelona,Dani Olmo:71:Barcelona
+2025-05-26 20:03:41,Santos,Flamengo,1,0,Santos,Guilherme:67:Santos
+2025-05-26 20:03:50,Flamengo,Santos,0,0,Empate,
+2025-05-26 20:04:02,Bayer de Munique,Cruzeiro,2,0,Bayer de Munique,Leroy Sane:10:Bayer de Munique;Jamal Musiala:37:Bayer de Munique
+2025-05-26 20:04:12,Cruzeiro,Bayer de Munique,0,1,Bayer de Munique,Michael Olise:66:Bayer de Munique
+2025-05-26 20:04:43,Barcelona,Bayer de Munique,1,1,Empate,Harry Kane:26:Bayer de Munique;Pedri:53:Barcelona
+2025-05-26 20:04:54,Bayer de Munique,Barcelona,1,0,Bayer de Munique,Harry Kane:17:Bayer de Munique
+2025-05-26 20:05:05,Santos,Sao Paulo,0,1,Sao Paulo,Luciano:88:Sao Paulo
+2025-05-26 20:05:15,Sao Paulo,Santos,0,1,Santos,Neymar:17:Santos
+2025-05-26 20:05:34,Bayer de Munique,Sao Paulo,2,0,Bayer de Munique,Harry Kane:45:Bayer de Munique;Harry Kane:87:Bayer de Munique
+2025-05-26 20:05:45,Sao Paulo,Bayer de Munique,1,1,Empate,Oscar:78:Sao Paulo;Jamal Musiala:85:Bayer de Munique
+2025-05-26 20:09:54,Manchester United,Internazionale,1,0,Manchester United,Bruno Fernandes:56:Manchester United
+2025-05-26 20:10:04,Manchester City,Real Madrid,0,1,Real Madrid,Rodrygo:14:Real Madrid
+2025-05-26 20:10:15,Corinthians,Liverpool,0,0,Empate,
+2025-05-26 20:10:25,Atletico Madrid,Sao Paulo,0,0,Empate,
+2025-05-26 20:10:34,Santos,Bayer de Munique,0,0,Empate,
+2025-05-26 20:10:42,Barcelona,Palmeiras,0,0,Empate,
+2025-05-26 20:10:52,Atletico MG,Flamengo,0,0,Empate,
+2025-05-26 20:11:03,PSG,Cruzeiro,0,1,Cruzeiro,Matheus Pereira:77:Cruzeiro
+2025-05-26 20:11:42,Cruzeiro,Manchester United,0,2,Manchester United,Mason Mount:63:Manchester United;Amad Diallo:66:Manchester United
+2025-05-26 20:11:53,Bayer de Munique,Palmeiras,1,0,Bayer de Munique,Jamal Musiala:64:Bayer de Munique
+2025-05-26 20:12:04,Sao Paulo,Real Madrid,0,0,Empate,
+2025-05-26 20:12:15,Atletico MG,Corinthians,0,0,Empate,
+2025-05-26 20:12:33,Corinthians,Manchester United,1,0,Corinthians,Igor Coronado:61:Corinthians
+2025-05-26 20:12:44,Sao Paulo,Bayer de Munique,0,0,Empate,
+2025-05-26 20:13:16,Corinthians,Sao Paulo,0,0,Empate,
+2025-05-26 20:28:43,Borussia Dortmund,Bayer Leverkusen,0,1,Bayer Leverkusen,Victor Boniface:67:Bayer Leverkusen
+2025-05-26 20:37:45,Flamengo,Palmeiras,0,1,Palmeiras,Vitor Roque:45:Palmeiras
+2025-05-26 20:40:08,Corinthians,Sao Paulo,2,2,Empate,Memphis Depay:12:Corinthians;Oscar:85:Sao Paulo;Memphis Depay:89:Corinthians;Calleri:90:Sao Paulo
+2025-05-26 20:40:21,Santos,Palmeiras,0,1,Palmeiras,Raphael Veiga:70:Palmeiras
+2025-05-26 20:40:42,Sao Paulo,Palmeiras,0,0,Empate,
+2025-05-26 20:57:17,Bayer de Munique,Bayer Leverkusen,1,2,Bayer Leverkusen,Harry Kane:32:Bayer de Munique;Granit Xhaka:52:Bayer Leverkusen;Victor Boniface:74:Bayer Leverkusen
+2025-05-26 20:57:30,PSG,Borussia Dortmund,1,1,Empate,Karim Adeyemi:25:Borussia Dortmund;Fabian Ruiz:90:PSG
+2025-05-26 20:58:07,Borussia Dortmund,Bayer Leverkusen,2,0,Borussia Dortmund,Serhou Guirassy:67:Borussia Dortmund;Serhou Guirassy:77:Borussia Dortmund
+2025-05-26 21:21:53,Flamengo,Fluminense,0,0,Empate,
+2025-05-26 21:23:17,Cruzeiro,Chelsea,1,0,Cruzeiro,Matheus Henrique:90:Cruzeiro
+2025-05-26 21:23:28,Liverpool,Napoli,1,1,Empate,Mac Allister:64:Liverpool;Scott McTominay:83:Napoli
+2025-05-26 21:23:44,Sao Paulo,Internacional,3,1,Sao Paulo,Enner Valencia:44:Internacional;Oscar:57:Sao Paulo;Ferreirinha:71:Sao Paulo;Calleri:90:Sao Paulo
+2025-05-26 21:23:58,Barcelona,Fluminense,1,1,Empate,Pedri:3:Barcelona;Paulo Henrique Ganso:90:Fluminense
+2025-05-26 21:24:18,Barcelona,Sao Paulo,2,0,Barcelona,Pedri:58:Barcelona;Lamine Yamal:90:Barcelona
+2025-05-26 21:24:29,Liverpool,Cruzeiro,0,0,Empate,
+2025-05-26 21:24:44,Liverpool,Barcelona,1,0,Liverpool,Mohamed Salah:39:Liverpool
+2025-05-26 21:28:13,Chelsea,Atletico Madrid,0,0,Empate,
+2025-05-26 21:28:24,Manchester City,Internacional,0,1,Internacional,Oscar Romero:83:Internacional
+2025-05-26 21:28:36,Flamengo,Palmeiras,0,2,Palmeiras,Richard Rios:22:Palmeiras;Felipe Anderson:45:Palmeiras
+2025-05-26 21:28:48,Barcelona,Bayer Leverkusen,1,1,Empate,Dani Olmo:23:Barcelona;Florian Wirtz:80:Bayer Leverkusen
+2025-05-26 21:29:00,Borussia Dortmund,Corinthians,2,0,Borussia Dortmund,Emre Can:4:Borussia Dortmund;Emre Can:30:Borussia Dortmund
+2025-05-26 21:29:11,Liverpool,Bayer de Munique,1,0,Liverpool,Mohamed Salah:71:Liverpool
+2025-05-26 21:29:21,Sao Paulo,Real Madrid,0,0,Empate,
+2025-05-26 21:29:32,Gremio,Cruzeiro,1,0,Gremio,Cristian Pavon:56:Gremio
+2025-05-26 21:30:01,Palmeiras,Sao Paulo,2,1,Palmeiras,Felipe Anderson:56:Palmeiras;Ferreirinha:78:Sao Paulo;Raphael Veiga:81:Palmeiras
+2025-05-26 21:30:15,Atletico Madrid,Liverpool,0,2,Liverpool,Mac Allister:74:Liverpool;Dominik Szoboszlai:77:Liverpool
+2025-05-26 21:30:28,Internacional,Borussia Dortmund,1,1,Empate,Karim Adeyemi:22:Borussia Dortmund;Oscar Romero:56:Internacional
+2025-05-26 21:30:38,Gremio,Bayer Leverkusen,0,1,Bayer Leverkusen,Patrik Schick:37:Bayer Leverkusen
+2025-05-26 21:31:04,Liverpool,Bayer Leverkusen,0,0,Empate,
+2025-05-26 21:31:16,Palmeiras,Internacional,0,0,Empate,
+2025-05-26 21:31:58,Internacional,Liverpool,0,0,Empate,
+2025-05-26 21:37:05,Chelsea,Borussia Dortmund,1,0,Chelsea,Jadon Sancho:49:Chelsea
+2025-05-26 21:40:11,Palmeiras,Real Madrid,0,0,Empate,
+2025-05-26 21:40:21,Real Madrid,Palmeiras,0,0,Empate,
+2025-05-26 21:40:31,Barcelona,Flamengo,0,0,Empate,
+2025-05-26 21:40:40,Flamengo,Barcelona,0,0,Empate,
+2025-05-26 21:41:03,Palmeiras,Flamengo,1,0,Palmeiras,Felipe Anderson:9:Palmeiras
+2025-05-26 21:41:14,Flamengo,Palmeiras,1,0,Flamengo,Michael:45:Flamengo
+2025-05-26 21:49:54,Juventus,Internazionale,0,0,Empate,
+2025-05-26 21:52:39,Gremio,Santos,1,1,Empate,Gustavo Cuellar:9:Gremio;Yeferson Soteldo:65:Santos
+2025-05-26 21:52:52,Napoli,PSG,1,1,Empate,David Neres:45:Napoli;Ousmane Dembele:45:PSG
+2025-05-26 21:53:02,Flamengo,Manchester City,0,1,Manchester City,Erling Haaland:3:Manchester City
+2025-05-26 21:53:12,Juventus,Atletico MG,0,0,Empate,
+2025-05-26 21:53:23,Internazionale,Real Madrid,0,1,Real Madrid,Kylian Mbappe:45:Real Madrid
+2025-05-26 21:53:33,Bayer Leverkusen,Bayer de Munique,0,0,Empate,
+2025-05-26 21:53:47,Liverpool,Palmeiras,2,1,Liverpool,Raphael Veiga:6:Palmeiras;Mac Allister:24:Liverpool;Dominik Szoboszlai:30:Liverpool
+2025-05-26 21:53:58,Cruzeiro,Internacional,1,0,Cruzeiro,Matheus Pereira:45:Cruzeiro
+2025-05-26 21:54:17,Real Madrid,Cruzeiro,0,0,Empate,
+2025-05-26 21:54:27,Manchester City,Bayer Leverkusen,0,0,Empate,
+2025-05-26 21:54:38,Liverpool,Santos,0,1,Santos,Neymar:73:Santos
+2025-05-26 21:54:49,Atletico MG,PSG,0,0,Empate,
+2025-05-26 21:55:05,Cruzeiro,Santos,0,0,Empate,
+2025-05-26 21:55:15,Manchester City,Atletico MG,0,0,Empate,
+2025-05-26 21:55:34,Santos,Manchester City,0,0,Empate,
+2025-05-26 21:57:40,Corinthians,Atletico MG,3,1,Corinthians,Memphis Depay:5:Corinthians;Rodrigo Garro:21:Corinthians;Igor Coronado:45:Corinthians;Gustavo Scarpa:51:Atletico MG
+2025-05-26 22:00:19,Santos,Sao Paulo,0,0,Empate,
+2025-05-26 22:00:30,Corinthians,Palmeiras,0,0,Empate,
+2025-05-26 22:00:44,Palmeiras,Sao Paulo,0,0,Empate,
+2025-05-26 22:02:53,Flamengo,Fluminense,0,0,Empate,
+2025-05-26 22:03:13,Gremio,Internacional,0,1,Internacional,Oscar Romero:52:Internacional
+2025-05-26 22:03:33,Cruzeiro,Atletico MG,1,0,Cruzeiro,Gabriel Barbosa:89:Cruzeiro
+2025-05-26 22:03:52,Barcelona,Real Madrid,0,0,Empate,
+2025-05-26 22:04:12,Liverpool,Chelsea,0,0,Empate,
+2025-05-26 22:04:35,Bayer de Munique,Bayer Leverkusen,1,0,Bayer de Munique,Leroy Sane:75:Bayer de Munique
+2025-05-26 22:04:58,Napoli,Juventus,1,0,Napoli,Scott McTominay:78:Napoli
+2025-05-26 22:05:22,PSG,Bayer de Munique,0,1,Bayer de Munique,Michael Olise:53:Bayer de Munique
+2025-05-26 22:07:01,Manchester United,Atletico Madrid,0,1,Atletico Madrid,Rodrigo de Paul:21:Atletico Madrid
+2025-05-26 22:08:18,Manchester City,Chelsea,0,0,Empate,
+2025-05-26 22:15:23,Santos,Cruzeiro,0,2,Cruzeiro,Gabriel Barbosa:41:Cruzeiro;Kaio Jorge:57:Cruzeiro
+2025-05-26 22:19:30,Chelsea,Bayer de Munique,1,1,Empate,Harry Kane:45:Bayer de Munique;Jadon Sancho:53:Chelsea
+2025-05-26 22:19:38,Bayer de Munique,Chelsea,0,0,Empate,
+2025-05-26 22:19:49,Manchester United,Liverpool,1,0,Manchester United,Mason Mount:6:Manchester United
+2025-05-26 22:20:00,Liverpool,Manchester United,1,0,Liverpool,Mohamed Salah:78:Liverpool
+2025-05-26 22:20:11,Real Madrid,Flamengo,0,0,Empate,
+2025-05-26 22:20:22,Flamengo,Real Madrid,0,1,Real Madrid,Rodrygo:88:Real Madrid
+2025-05-26 22:20:35,Manchester City,Atletico Madrid,0,2,Atletico Madrid,Julian Alvarez:20:Atletico Madrid;Antoine Griezmann:53:Atletico Madrid
+2025-05-26 22:20:44,Atletico Madrid,Manchester City,0,0,Empate,
+2025-05-26 22:20:57,Juventus,Bayer Leverkusen,1,1,Empate,Patrik Schick:63:Bayer Leverkusen;Dusan Vlahovic:69:Juventus
+2025-05-26 22:21:06,Bayer Leverkusen,Juventus,0,0,Empate,
+2025-05-26 22:21:17,Sao Paulo,Santos,0,0,Empate,
+2025-05-26 22:21:30,Santos,Sao Paulo,3,0,Santos,Yeferson Soteldo:44:Santos;Guilherme:45:Santos;Yeferson Soteldo:45:Santos
+2025-05-26 22:21:41,Barcelona,Borussia Dortmund,0,1,Borussia Dortmund,Serhou Guirassy:9:Borussia Dortmund
+2025-05-26 22:21:50,Borussia Dortmund,Barcelona,0,0,Empate,
+2025-05-26 22:22:02,Atletico MG,PSG,1,1,Empate,Vitinha:27:PSG;Rony:86:Atletico MG
+2025-05-26 22:22:13,PSG,Atletico MG,1,0,PSG,Ousmane Dembele:90:PSG
+2025-05-26 22:22:44,Santos,Real Madrid,0,2,Real Madrid,Vinicius Junior:60:Real Madrid;Kylian Mbappe:87:Real Madrid
+2025-05-26 22:22:54,Real Madrid,Santos,1,0,Real Madrid,Vinicius Junior:85:Real Madrid
+2025-05-26 22:23:05,Bayer Leverkusen,Liverpool,0,0,Empate,
+2025-05-26 22:23:13,Liverpool,Bayer Leverkusen,0,0,Empate,
+2025-05-26 22:23:23,Borussia Dortmund,Bayer de Munique,0,0,Empate,
+2025-05-26 22:23:33,Bayer de Munique,Borussia Dortmund,0,0,Empate,
+2025-05-26 22:23:43,Atletico Madrid,PSG,0,0,Empate,
+2025-05-26 22:23:54,PSG,Atletico Madrid,1,0,PSG,Khvicha Kvaratskhelia:37:PSG
+2025-05-26 22:24:13,Liverpool,PSG,0,1,PSG,Ousmane Dembele:30:PSG
+2025-05-26 22:24:26,PSG,Liverpool,2,0,PSG,Ousmane Dembele:14:PSG;Fabian Ruiz:41:PSG
+2025-05-26 22:24:35,Real Madrid,Bayer de Munique,0,0,Empate,
+2025-05-26 22:24:45,Bayer de Munique,Real Madrid,0,0,Empate,
+2025-05-26 22:25:02,PSG,Bayer de Munique,1,0,PSG,Fabian Ruiz:12:PSG
+2025-05-26 22:25:12,Bayer de Munique,PSG,0,0,Empate,
+2025-05-26 22:30:38,Chelsea,Napoli,0,0,Empate,
+2025-05-26 22:31:42,Juventus,Real Madrid,1,1,Empate,Douglas Luiz:8:Juventus;Vinicius Junior:80:Real Madrid
+2025-05-26 22:31:59,Fluminense,Internacional,0,0,Empate,
+2025-05-26 22:32:29,Sao Paulo,Liverpool,1,0,Sao Paulo,Calleri:75:Sao Paulo
+2025-05-26 22:42:12,Internazionale,Bayer Leverkusen,0,0,Empate,
+2025-05-26 22:48:07,Vasco da Gama,Flamengo,1,1,Empate,Bruno Henrique:86:Flamengo;Pablo Vegetti:90:Vasco da Gama
+2025-05-26 23:07:34,Botafogo,Vasco da Gama,0,1,Vasco da Gama,Loide Augusto:83:Vasco da Gama
+2025-05-26 23:11:23,Chelsea,Liverpool,1,0,Chelsea,Nicolas Jackson:66:Chelsea
+2025-05-27 11:47:27,Sao Paulo,Gremio,1,0,Sao Paulo,Calleri:63:Sao Paulo
+2025-05-27 11:47:39,Gremio,Sao Paulo,0,2,Sao Paulo,Luciano:23:Sao Paulo;Luciano:40:Sao Paulo
+2025-05-27 11:47:48,Corinthians,Palmeiras,0,0,Empate,
+2025-05-27 11:47:59,Palmeiras,Corinthians,1,1,Empate,Rodrigo Garro:33:Corinthians;Felipe Anderson:38:Palmeiras
+2025-05-27 11:48:10,Atletico MG,Santos,0,1,Santos,Thaciano:45:Santos
+2025-05-27 11:48:21,Santos,Atletico MG,1,0,Santos,Yeferson Soteldo:9:Santos
+2025-05-27 11:48:32,Flamengo,Internacional,0,1,Internacional,Alan Patrick:26:Internacional
+2025-05-27 11:48:44,Internacional,Flamengo,1,1,Empate,Enner Valencia:27:Internacional;Bruno Henrique:64:Flamengo
+2025-05-27 11:49:34,Santos,Internacional,0,0,Empate,
+2025-05-27 11:49:46,Internacional,Santos,2,0,Internacional,Enner Valencia:26:Internacional;Rafael Borre:63:Internacional
+2025-05-27 11:49:55,Corinthians,Sao Paulo,0,0,Empate,
+2025-05-27 11:50:06,Sao Paulo,Corinthians,1,0,Sao Paulo,Oscar:70:Sao Paulo
+2025-05-27 11:50:24,Internacional,Sao Paulo,2,0,Internacional,Rafael Borre:45:Internacional;Oscar Romero:90:Internacional
+2025-05-27 11:50:36,Sao Paulo,Internacional,1,0,Sao Paulo,Calleri:21:Sao Paulo
+2025-05-27 11:58:03,Santos,PSG,0,1,PSG,Ousmane Dembele:18:PSG
+2025-05-27 11:58:15,Manchester City,Palmeiras,1,0,Manchester City,Savinho:45:Manchester City
+2025-05-27 11:58:27,Bayer Leverkusen,Corinthians,1,1,Empate,Victor Boniface:8:Bayer Leverkusen;Memphis Depay:23:Corinthians
+2025-05-27 11:58:37,Internacional,Fluminense,0,0,Empate,
+2025-05-27 11:58:47,Bayer de Munique,Napoli,0,0,Empate,
+2025-05-27 11:58:57,Chelsea,Atletico MG,0,0,Empate,
+2025-05-27 11:59:07,Cruzeiro,Sao Paulo,0,0,Empate,
+2025-05-27 11:59:16,Atletico Madrid,Internazionale,0,0,Empate,
+2025-05-27 12:00:12,Chelsea,Bayer de Munique,0,1,Bayer de Munique,Harry Kane:45:Bayer de Munique
+2025-05-27 12:00:23,Internazionale,Bayer Leverkusen,1,0,Internazionale,Henrikh Mkhitaryan:45:Internazionale
+2025-05-27 12:00:34,Internacional,PSG,0,1,PSG,Ousmane Dembele:65:PSG
+2025-05-27 12:00:43,Cruzeiro,Manchester City,0,0,Empate,
+2025-05-27 12:02:41,Internazionale,Manchester City,1,0,Internazionale,Hakan Calhanoglu:11:Internazionale
+2025-05-27 12:02:50,PSG,Bayer de Munique,0,0,Empate,
+2025-05-27 12:03:22,Bayer de Munique,Internazionale,0,0,Empate,
+2025-05-27 12:09:35,Chelsea,Napoli,2,0,Chelsea,Cole Palmer:36:Chelsea;Nicolas Jackson:40:Chelsea
+2025-05-27 12:09:45,Napoli,Chelsea,0,0,Empate,
+2025-05-27 12:09:55,Atletico MG,Gremio,0,0,Empate,
+2025-05-27 12:10:05,Gremio,Atletico MG,0,0,Empate,
+2025-05-27 12:10:19,Corinthians,Sao Paulo,2,1,Corinthians,Ferreirinha:11:Sao Paulo;Rodrigo Garro:40:Corinthians;Yuri Alberto:45:Corinthians
+2025-05-27 12:10:29,Sao Paulo,Corinthians,0,1,Corinthians,Igor Coronado:45:Corinthians
+2025-05-27 12:10:38,Cruzeiro,Vasco da Gama,0,0,Empate,
+2025-05-27 12:10:50,Vasco da Gama,Cruzeiro,1,0,Vasco da Gama,Pablo Vegetti:61:Vasco da Gama
+2025-05-27 12:11:02,Fluminense,Liverpool,1,1,Empate,Darwin Nunez:68:Liverpool;German Cano:87:Fluminense
+2025-05-27 12:11:14,Liverpool,Fluminense,2,0,Liverpool,Darwin Nunez:62:Liverpool;Darwin Nunez:73:Liverpool
+2025-05-27 12:11:26,Palmeiras,Santos,0,1,Santos,Neymar:52:Santos
+2025-05-27 12:11:36,Santos,Palmeiras,0,1,Palmeiras,Felipe Anderson:74:Palmeiras
+2025-05-27 12:11:48,Internacional,Flamengo,1,0,Internacional,Rafael Borre:84:Internacional
+2025-05-27 12:11:56,Flamengo,Internacional,0,0,Empate,
+2025-05-27 12:12:06,Botafogo,Internazionale,0,0,Empate,
+2025-05-27 12:12:15,Internazionale,Botafogo,0,0,Empate,
+2025-05-27 12:12:57,Gremio,Internazionale,0,2,Internazionale,Hakan Calhanoglu:19:Internazionale;Lautaro Martinez:25:Internazionale
+2025-05-27 12:13:08,Internazionale,Gremio,0,0,Empate,
+2025-05-27 12:13:20,Vasco da Gama,Corinthians,2,0,Vasco da Gama,Philippe Coutinho:45:Vasco da Gama;Pablo Vegetti:54:Vasco da Gama
+2025-05-27 12:13:31,Corinthians,Vasco da Gama,0,1,Vasco da Gama,Loide Augusto:11:Vasco da Gama
+2025-05-27 12:13:41,Santos,Chelsea,0,0,Empate,
+2025-05-27 12:13:51,Chelsea,Santos,0,1,Santos,Thaciano:17:Santos
+2025-05-27 12:14:01,Liverpool,Internacional,1,0,Liverpool,Mac Allister:38:Liverpool
+2025-05-27 12:14:13,Internacional,Liverpool,2,0,Internacional,Rafael Borre:45:Internacional;Rafael Borre:45:Internacional
+2025-05-27 12:14:36,Internacional,Vasco da Gama,0,1,Vasco da Gama,Philippe Coutinho:62:Vasco da Gama
+2025-05-27 12:14:48,Vasco da Gama,Internacional,0,2,Internacional,Enner Valencia:83:Internacional;Rafael Borre:90:Internacional
+2025-05-27 12:14:58,Internazionale,Santos,1,0,Internazionale,Lautaro Martinez:60:Internazionale
+2025-05-27 12:15:07,Santos,Internazionale,0,0,Empate,
+2025-05-27 12:16:18,Internacional,Internazionale,0,1,Internazionale,Hakan Calhanoglu:26:Internazionale
+2025-05-27 12:16:27,Internazionale,Internacional,0,0,Empate,
+2025-05-27 12:19:14,Vasco da Gama,Manchester United,1,0,Vasco da Gama,Dimitri Payet:13:Vasco da Gama
+2025-05-27 12:25:55,Santos,Palmeiras,1,0,Santos,Neymar:80:Santos
+2025-05-27 12:26:05,Corinthians,Sao Paulo,0,0,Empate,
+2025-05-27 12:26:24,Santos,Sao Paulo,0,0,Empate,
+2025-05-27 12:34:31,Botafogo,Gremio,0,0,Empate,
+2025-05-27 12:37:51,Bayer Leverkusen,Juventus,0,0,Empate,
+2025-05-27 12:41:09,Santos,Vasco da Gama,0,0,Empate,
+2025-05-27 12:41:20,Vasco da Gama,Santos,1,1,Empate,Guilherme:3:Santos;Dimitri Payet:60:Vasco da Gama
+2025-05-27 12:41:34,Barcelona,Borussia Dortmund,2,1,Barcelona,Emre Can:45:Borussia Dortmund;Pedri:45:Barcelona;Dani Olmo:81:Barcelona
+2025-05-27 12:41:43,Borussia Dortmund,Barcelona,0,0,Empate,
+2025-05-27 12:41:54,Chelsea,Corinthians,1,0,Chelsea,Jadon Sancho:20:Chelsea
+2025-05-27 12:42:06,Corinthians,Chelsea,0,2,Chelsea,Enzo Fernandes:65:Chelsea;Jadon Sancho:73:Chelsea
+2025-05-27 12:42:16,Atletico MG,Botafogo,0,0,Empate,
+2025-05-27 12:42:25,Botafogo,Atletico MG,0,0,Empate,
+2025-05-27 12:42:39,Sao Paulo,Gremio,1,2,Gremio,Mathias Villasanti:40:Gremio;Cristian Pavon:45:Gremio;Ferreirinha:83:Sao Paulo
+2025-05-27 12:42:50,Gremio,Sao Paulo,0,1,Sao Paulo,Calleri:50:Sao Paulo
+2025-05-27 12:43:02,Cruzeiro,Manchester City,0,1,Manchester City,Rodri:13:Manchester City
+2025-05-27 12:43:12,Manchester City,Cruzeiro,1,0,Manchester City,Rodri:90:Manchester City
+2025-05-27 12:43:23,Palmeiras,Internacional,1,0,Palmeiras,Vitor Roque:45:Palmeiras
+2025-05-27 12:43:33,Internacional,Palmeiras,0,1,Palmeiras,Richard Rios:5:Palmeiras
+2025-05-27 12:43:43,Juventus,Real Madrid,0,0,Empate,
+2025-05-27 12:43:55,Real Madrid,Juventus,1,2,Juventus,Kenan Y?ld?z:3:Juventus;Vinicius Junior:11:Real Madrid;Kenan Y?ld?z:51:Juventus
+2025-05-27 12:52:42,Manchester City,Napoli,0,0,Empate,
+2025-05-27 17:07:16,Barcelona,Manchester City,1,0,Barcelona,Lamine Yamal:11:Barcelona
+2025-05-27 17:07:25,Manchester City,Barcelona,0,0,Empate,
+2025-05-27 17:07:36,Corinthians,Juventus,1,0,Corinthians,Memphis Depay:55:Corinthians
+2025-05-27 17:07:45,Juventus,Corinthians,0,0,Empate,
+2025-05-27 17:07:58,Liverpool,Gremio,0,1,Gremio,Mathias Villasanti:48:Gremio
+2025-05-27 17:08:08,Gremio,Liverpool,1,0,Gremio,Mathias Villasanti:88:Gremio
+2025-05-27 17:08:20,Atletico Madrid,Vasco da Gama,1,0,Atletico Madrid,Koke:57:Atletico Madrid
+2025-05-27 17:08:32,Vasco da Gama,Atletico Madrid,2,0,Vasco da Gama,Pablo Vegetti:50:Vasco da Gama;Pablo Vegetti:83:Vasco da Gama
+2025-05-27 17:08:42,PSG,Manchester United,0,0,Empate,
+2025-05-27 17:08:55,Manchester United,PSG,2,0,Manchester United,Mason Mount:64:Manchester United;Bruno Fernandes:90:Manchester United
+2025-05-27 17:09:04,Santos,Botafogo,0,0,Empate,
+2025-05-27 17:09:14,Botafogo,Santos,0,1,Santos,Yeferson Soteldo:25:Santos
+2025-05-27 17:09:23,Internacional,Cruzeiro,0,0,Empate,
+2025-05-27 17:09:33,Cruzeiro,Internacional,0,0,Empate,
+2025-05-27 17:09:45,Sao Paulo,Flamengo,0,1,Flamengo,Michael:48:Flamengo
+2025-05-27 17:09:55,Flamengo,Sao Paulo,0,1,Sao Paulo,Oscar:90:Sao Paulo
+2025-05-27 17:10:20,Barcelona,Vasco da Gama,0,0,Empate,
+2025-05-27 17:10:30,Vasco da Gama,Barcelona,1,0,Vasco da Gama,Pablo Vegetti:89:Vasco da Gama
+2025-05-27 17:10:40,Corinthians,Flamengo,0,0,Empate,
+2025-05-27 17:10:50,Flamengo,Corinthians,1,0,Flamengo,Pedro:86:Flamengo
+2025-05-27 17:11:00,Cruzeiro,Manchester United,0,0,Empate,
+2025-05-27 17:11:09,Manchester United,Cruzeiro,0,0,Empate,
+2025-05-27 17:11:20,Gremio,Santos,1,0,Gremio,Gustavo Cuellar:33:Gremio
+2025-05-27 17:11:29,Santos,Gremio,0,0,Empate,
+2025-05-27 17:12:02,Vasco da Gama,Manchester United,2,0,Vasco da Gama,Dimitri Payet:45:Vasco da Gama;Philippe Coutinho:77:Vasco da Gama
+2025-05-27 17:12:14,Manchester United,Vasco da Gama,1,1,Empate,Bruno Fernandes:63:Manchester United;Philippe Coutinho:70:Vasco da Gama
+2025-05-27 17:12:24,Flamengo,Gremio,0,0,Empate,
+2025-05-27 17:12:34,Gremio,Flamengo,0,0,Empate,
+2025-05-27 17:12:52,Vasco da Gama,Flamengo,1,0,Vasco da Gama,Dimitri Payet:10:Vasco da Gama
+2025-05-27 17:13:03,Flamengo,Vasco da Gama,2,0,Flamengo,Michael:72:Flamengo;Pedro:85:Flamengo
+2025-05-27 17:16:36,Flamengo,Botafogo,1,0,Flamengo,Pedro:18:Flamengo
+2025-05-27 17:16:47,Fluminense,Vasco da Gama,1,0,Fluminense,Paulo Henrique Ganso:45:Fluminense
+2025-05-27 17:17:07,Flamengo,Fluminense,2,1,Flamengo,Jhon Arias:12:Fluminense;Michael:51:Flamengo;Michael:62:Flamengo
+2025-05-27 17:24:50,Manchester United,Botafogo,0,1,Botafogo,Jefferson Savarino:90:Botafogo
+2025-05-27 17:25:02,Botafogo,Manchester United,2,0,Botafogo,Jefferson Savarino:7:Botafogo;Jefferson Savarino:32:Botafogo
+2025-05-27 17:25:13,Manchester City,Cruzeiro,1,0,Manchester City,Savinho:23:Manchester City
+2025-05-27 17:25:23,Cruzeiro,Manchester City,0,0,Empate,
+2025-05-27 17:25:31,Atletico Madrid,Bayer Leverkusen,0,0,Empate,
+2025-05-27 17:25:43,Bayer Leverkusen,Atletico Madrid,0,1,Atletico Madrid,Koke:45:Atletico Madrid
+2025-05-27 17:25:54,Palmeiras,Real Madrid,1,0,Palmeiras,Richard Rios:81:Palmeiras
+2025-05-27 17:26:03,Real Madrid,Palmeiras,0,0,Empate,
+2025-05-27 17:26:14,Internazionale,Napoli,0,1,Napoli,Scott McTominay:85:Napoli
+2025-05-27 17:26:24,Napoli,Internazionale,0,0,Empate,
+2025-05-27 17:26:35,Barcelona,Gremio,0,1,Gremio,Gustavo Cuellar:75:Gremio
+2025-05-27 17:26:46,Gremio,Barcelona,1,0,Gremio,Martin Braithwaite:7:Gremio
+2025-05-27 17:26:57,Liverpool,Borussia Dortmund,0,1,Borussia Dortmund,Emre Can:14:Borussia Dortmund
+2025-05-27 17:27:07,Borussia Dortmund,Liverpool,0,0,Empate,
+2025-05-27 17:27:16,Vasco da Gama,Fluminense,0,0,Empate,
+2025-05-27 17:27:26,Fluminense,Vasco da Gama,0,0,Empate,
+2025-05-27 17:28:20,Vasco da Gama,Borussia Dortmund,1,1,Empate,Philippe Coutinho:32:Vasco da Gama;Julian Brandt:73:Borussia Dortmund
+2025-05-27 17:28:30,Borussia Dortmund,Vasco da Gama,0,0,Empate,
+2025-05-27 17:28:41,Napoli,Manchester City,1,0,Napoli,Billy Gilmour:28:Napoli
+2025-05-27 17:28:52,Manchester City,Napoli,1,1,Empate,Kevin De Bruyne:14:Manchester City;Billy Gilmour:90:Napoli
+2025-05-27 17:29:03,Atletico Madrid,Palmeiras,1,0,Atletico Madrid,Rodrigo de Paul:77:Atletico Madrid
+2025-05-27 17:29:12,Palmeiras,Atletico Madrid,0,0,Empate,
+2025-05-27 17:29:24,Botafogo,Gremio,0,1,Gremio,Martin Braithwaite:59:Gremio
+2025-05-27 17:29:34,Gremio,Botafogo,1,0,Gremio,Mathias Villasanti:48:Gremio
+2025-05-27 17:31:21,Napoli,Gremio,0,1,Gremio,Cristian Pavon:58:Gremio
+2025-05-27 17:31:32,Gremio,Napoli,1,0,Gremio,Mathias Villasanti:45:Gremio
+2025-05-27 17:31:43,Atletico Madrid,Borussia Dortmund,0,1,Borussia Dortmund,Serhou Guirassy:18:Borussia Dortmund
+2025-05-27 17:31:53,Borussia Dortmund,Atletico Madrid,0,1,Atletico Madrid,Julian Alvarez:53:Atletico Madrid
+2025-05-27 17:37:03,Atletico Madrid,Gremio,1,0,Atletico Madrid,Koke:45:Atletico Madrid
+2025-05-27 17:37:13,Gremio,Atletico Madrid,0,0,Empate,
+2025-05-27 17:40:00,Napoli,Borussia Dortmund,0,1,Borussia Dortmund,Emre Can:45:Borussia Dortmund
+2025-05-27 17:47:14,Borussia Dortmund,Manchester City,0,0,Empate,
+2025-05-27 17:47:22,Manchester City,Borussia Dortmund,0,0,Empate,
+2025-05-27 17:47:32,Vasco da Gama,Bayer Leverkusen,0,0,Empate,
+2025-05-27 17:47:42,Bayer Leverkusen,Vasco da Gama,0,0,Empate,
+2025-05-27 17:47:53,Liverpool,Fluminense,0,1,Fluminense,Jhon Arias:10:Fluminense
+2025-05-27 17:48:04,Fluminense,Liverpool,0,1,Liverpool,Mohamed Salah:29:Liverpool
+2025-05-27 17:48:15,Bayer de Munique,Internazionale,0,1,Internazionale,Henrikh Mkhitaryan:3:Internazionale
+2025-05-27 17:48:25,Internazionale,Bayer de Munique,0,0,Empate,
+2025-05-27 17:48:35,Botafogo,Atletico Madrid,0,0,Empate,
+2025-05-27 17:48:49,Atletico Madrid,Botafogo,2,2,Empate,Rodrigo de Paul:45:Atletico Madrid;Julian Alvarez:55:Atletico Madrid;Jefferson Savarino:74:Botafogo;Jefferson Savarino:79:Botafogo
+2025-05-27 17:49:00,Real Madrid,Napoli,0,0,Empate,
+2025-05-27 17:49:11,Napoli,Real Madrid,0,0,Empate,
+2025-05-27 17:49:22,Juventus,Manchester United,0,1,Manchester United,Mason Mount:45:Manchester United
+2025-05-27 17:49:33,Manchester United,Juventus,0,1,Juventus,Kenan Y?ld?z:10:Juventus
+2025-05-27 17:49:42,Santos,Sao Paulo,0,0,Empate,
+2025-05-27 17:49:51,Sao Paulo,Santos,1,0,Sao Paulo,Ferreirinha:45:Sao Paulo
+2025-05-27 17:54:09,Napoli,Fluminense,0,1,Fluminense,Jhon Arias:87:Fluminense
+2025-05-27 17:54:17,Fluminense,Napoli,0,0,Empate,
+2025-05-27 17:54:28,Borussia Dortmund,Bayer Leverkusen,1,0,Borussia Dortmund,Emre Can:67:Borussia Dortmund
+2025-05-27 17:54:39,Bayer Leverkusen,Borussia Dortmund,1,1,Empate,Karim Adeyemi:45:Borussia Dortmund;Patrik Schick:67:Bayer Leverkusen
+2025-05-27 17:54:50,Internazionale,Sao Paulo,0,0,Empate,
+2025-05-27 17:55:03,Sao Paulo,Internazionale,2,1,Sao Paulo,Calleri:24:Sao Paulo;Luciano:90:Sao Paulo;Lautaro Martinez:90:Internazionale
+2025-05-27 17:55:16,Botafogo,Manchester United,1,1,Empate,Amad Diallo:26:Manchester United;Igor Jesus:63:Botafogo
+2025-05-27 17:55:24,Manchester United,Botafogo,0,0,Empate,
+2025-05-27 17:55:45,Sao Paulo,Fluminense,1,1,Empate,Paulo Henrique Ganso:45:Fluminense;Oscar:81:Sao Paulo
+2025-05-27 17:55:57,Fluminense,Sao Paulo,0,1,Sao Paulo,Ferreirinha:87:Sao Paulo
+2025-05-27 17:56:17,Sao Paulo,Borussia Dortmund,0,1,Borussia Dortmund,Emre Can:15:Borussia Dortmund
+2025-05-27 17:56:27,Borussia Dortmund,Sao Paulo,0,1,Sao Paulo,Calleri:41:Sao Paulo
+2025-05-27 17:56:38,Fluminense,Manchester United,0,1,Manchester United,Alejandro Garnacho:45:Manchester United
+2025-05-27 17:56:53,Manchester United,Fluminense,2,2,Empate,Mason Mount:21:Manchester United;Alejandro Garnacho:41:Manchester United;Paulo Henrique Ganso:45:Fluminense;Paulo Henrique Ganso:58:Fluminense
+2025-05-27 17:58:27,Borussia Dortmund,Manchester United,1,0,Borussia Dortmund,Julian Brandt:44:Borussia Dortmund
+2025-05-27 17:58:37,Manchester United,Borussia Dortmund,0,0,Empate,
+2025-05-28 19:53:52,Borussia Dortmund,Chelsea,0,0,Empate,
+2025-05-28 19:54:00,Chelsea,Borussia Dortmund,0,0,Empate,
+2025-05-28 19:54:13,Liverpool,Flamengo,1,1,Empate,Arrascaeta:33:Flamengo;Mac Allister:90:Liverpool
+2025-05-28 19:54:23,Flamengo,Liverpool,1,0,Flamengo,Pedro:90:Flamengo
+2025-05-28 19:54:34,Manchester United,Atletico Madrid,0,1,Atletico Madrid,Koke:80:Atletico Madrid
+2025-05-28 19:54:44,Atletico Madrid,Manchester United,1,0,Atletico Madrid,Julian Alvarez:61:Atletico Madrid
+2025-05-28 19:54:55,Barcelona,Bayer de Munique,0,0,Empate,
+2025-05-28 19:55:05,Bayer de Munique,Barcelona,1,0,Bayer de Munique,Harry Kane:86:Bayer de Munique
+2025-05-28 19:55:15,Manchester City,Napoli,0,0,Empate,
+2025-05-28 19:55:25,Napoli,Manchester City,1,0,Napoli,Scott McTominay:11:Napoli
+2025-05-28 19:55:35,Palmeiras,Internazionale,0,0,Empate,
+2025-05-28 19:55:44,Internazionale,Palmeiras,1,0,Internazionale,Hakan Calhanoglu:45:Internazionale
+2025-05-28 19:55:55,PSG,Real Madrid,0,0,Empate,
+2025-05-28 19:56:06,Real Madrid,PSG,1,0,Real Madrid,Rodrygo:90:Real Madrid
+2025-05-28 19:56:14,Juventus,Bayer Leverkusen,0,0,Empate,
+2025-05-28 19:56:23,Bayer Leverkusen,Juventus,0,0,Empate,
+2025-05-28 19:57:09,Bayer de Munique,Flamengo,0,2,Flamengo,Pedro:45:Flamengo;Michael:86:Flamengo
+2025-05-28 19:57:18,Flamengo,Bayer de Munique,0,0,Empate,
+2025-05-28 19:57:28,Atletico Madrid,Borussia Dortmund,0,0,Empate,
+2025-05-28 19:57:37,Borussia Dortmund,Atletico Madrid,0,0,Empate,
+2025-05-28 19:57:48,Real Madrid,Napoli,1,0,Real Madrid,Jude Bellingham:64:Real Madrid
+2025-05-28 19:58:00,Napoli,Real Madrid,1,1,Empate,David Neres:58:Napoli;Kylian Mbappe:75:Real Madrid
+2025-05-28 19:58:11,Bayer Leverkusen,Internazionale,0,1,Internazionale,Henrikh Mkhitaryan:74:Internazionale
+2025-05-28 19:58:21,Internazionale,Bayer Leverkusen,1,0,Internazionale,Hakan Calhanoglu:17:Internazionale
+2025-05-28 19:58:44,Atletico Madrid,Internazionale,0,1,Internazionale,Marcus Thuram:89:Internazionale
+2025-05-28 19:58:56,Internazionale,Atletico Madrid,2,0,Internazionale,Hakan Calhanoglu:13:Internazionale;Henrikh Mkhitaryan:90:Internazionale
+2025-05-28 19:59:12,Flamengo,Real Madrid,4,1,Flamengo,Michael:13:Flamengo;Arrascaeta:31:Flamengo;Jude Bellingham:57:Real Madrid;Michael:80:Flamengo;Bruno Henrique:90:Flamengo
+2025-05-28 19:59:21,Real Madrid,Flamengo,0,0,Empate,
+2025-05-28 20:01:41,Flamengo,Internazionale,1,1,Empate,Arrascaeta:32:Flamengo;Hakan Calhanoglu:82:Internazionale
+2025-05-28 20:01:52,Internazionale,Flamengo,1,0,Internazionale,Henrikh Mkhitaryan:73:Internazionale
+2025-05-28 20:06:03,Arsenal,Botafogo,0,1,Botafogo,Igor Jesus:45:Botafogo
+2025-05-29 07:12:01,Gremio,Fluminense,1,1,Empate,Gustavo Cuellar:34:Gremio;Jhon Arias:90:Fluminense
+2025-05-29 07:12:14,Fluminense,Gremio,2,0,Fluminense,German Cano:27:Fluminense;Paulo Henrique Ganso:64:Fluminense
+2025-05-29 07:12:26,Barcelona,Atletico MG,1,1,Empate,Rony:11:Atletico MG;Pedri:59:Barcelona
+2025-05-29 07:12:35,Atletico MG,Barcelona,0,0,Empate,
+2025-05-29 07:12:46,Santos,Manchester United,1,0,Santos,Neymar:56:Santos
+2025-05-29 07:12:55,Manchester United,Santos,0,0,Empate,
+2025-05-29 07:13:07,Atletico Madrid,Bayer Leverkusen,1,0,Atletico Madrid,Rodrigo de Paul:22:Atletico Madrid
+2025-05-29 07:13:18,Bayer Leverkusen,Atletico Madrid,0,1,Atletico Madrid,Koke:90:Atletico Madrid
+2025-05-29 07:13:30,Arsenal,Palmeiras,1,1,Empate,Declan Rice:25:Arsenal;Richard Rios:90:Palmeiras
+2025-05-29 07:13:41,Palmeiras,Arsenal,2,0,Palmeiras,Richard Rios:4:Palmeiras;Vitor Roque:71:Palmeiras
+2025-05-29 07:13:51,Manchester City,Corinthians,0,0,Empate,
+2025-05-29 07:14:02,Corinthians,Manchester City,0,1,Manchester City,Erling Haaland:40:Manchester City
+2025-05-29 07:14:12,Chelsea,Napoli,0,0,Empate,
+2025-05-29 07:14:25,Napoli,Chelsea,0,3,Chelsea,Cole Palmer:3:Chelsea;Enzo Fernandes:11:Chelsea;Enzo Fernandes:20:Chelsea
+2025-05-29 07:14:34,Internazionale,Bayer de Munique,0,0,Empate,
+2025-05-29 07:14:49,Bayer de Munique,Internazionale,2,2,Empate,Lautaro Martinez:43:Internazionale;Hakan Calhanoglu:45:Internazionale;Jamal Musiala:45:Bayer de Munique;Jamal Musiala:58:Bayer de Munique
+2025-05-29 07:20:32,Internazionale,Manchester City,0,0,Empate,
+2025-05-29 07:20:42,Manchester City,Internazionale,0,1,Internazionale,Marcus Thuram:24:Internazionale
+2025-05-29 07:20:53,Fluminense,Atletico MG,1,0,Fluminense,Jhon Arias:84:Fluminense
+2025-05-29 07:21:03,Atletico MG,Fluminense,1,0,Atletico MG,Hulk:55:Atletico MG
+2025-05-29 07:21:13,Chelsea,Palmeiras,0,0,Empate,
+2025-05-29 07:21:25,Palmeiras,Chelsea,2,0,Palmeiras,Raphael Veiga:10:Palmeiras;Raphael Veiga:15:Palmeiras
+2025-05-29 07:21:34,Santos,Atletico Madrid,0,0,Empate,
+2025-05-29 07:21:44,Atletico Madrid,Santos,0,0,Empate,
+2025-05-29 07:25:40,Palmeiras,Santos,2,0,Palmeiras,Felipe Anderson:32:Palmeiras;Richard Rios:51:Palmeiras
+2025-05-29 07:25:49,Santos,Palmeiras,0,1,Palmeiras,Vitor Roque:90:Palmeiras
+2025-05-29 07:25:59,Internazionale,Fluminense,0,0,Empate,
+2025-05-29 07:26:10,Fluminense,Internazionale,0,1,Internazionale,Marcus Thuram:15:Internazionale
+2025-05-29 07:27:58,Palmeiras,Internazionale,0,1,Internazionale,Henrikh Mkhitaryan:59:Internazionale
+2025-05-29 07:28:10,Internazionale,Palmeiras,1,1,Empate,Richard Rios:67:Palmeiras;Lautaro Martinez:87:Internazionale
