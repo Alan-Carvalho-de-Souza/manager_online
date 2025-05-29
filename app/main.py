@@ -9,17 +9,21 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Importar os módulos da aplicação
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, current_dir)
 
+# Tentar importar com tratamento de erro
 try:
     from utils.io import carregar_clubes, carregar_jogadores, carregar_historico, filtrar_historico_por_time
-except ImportError:
-    # Fallback para Streamlit Cloud
-    import utils.io as utils_io
-    carregar_clubes = utils_io.carregar_clubes
-    carregar_jogadores = utils_io.carregar_jogadores
-    carregar_historico = utils_io.carregar_historico
-    filtrar_historico_por_time = utils_io.filtrar_historico_por_time
+except ModuleNotFoundError as e:
+    st.error(f"Erro ao importar módulo utils: {e}")
+    st.error(f"Diretório atual: {os.getcwd()}")
+    st.error(f"Arquivos disponíveis: {os.listdir('.')}")
+    if os.path.exists('utils'):
+        st.error(f"Arquivos em utils: {os.listdir('utils')}")
+    else:
+        st.error("Pasta utils não encontrada!")
+    st.stop()
 from app.simulacao import simular_partida
 from app.estatisticas import exibir_estatisticas_time
 from app.classificacao import gerar_tabela_classificacao, gerar_tabela_artilharia, exibir_classificacao_com_logos
