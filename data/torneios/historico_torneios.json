@@ -1,0 +1,342 @@
+[
+  {
+    "nome": "Torneio de Verão",
+    "data": "2025-05-26 20:58:08",
+    "formato": "jogo_unico",
+    "campeao": "Borussia Dortmund",
+    "vice": "Bayer Leverkusen",
+    "num_times": 4,
+    "times_participantes": [
+      "PSG",
+      "Bayer de Munique",
+      "Borussia Dortmund",
+      "Bayer Leverkusen"
+    ]
+  },
+  {
+    "nome": "Torneio de Verão",
+    "data": "2025-05-26 21:24:45",
+    "formato": "jogo_unico",
+    "campeao": "Liverpool",
+    "vice": "Barcelona",
+    "num_times": 8,
+    "times_participantes": [
+      "Sao Paulo",
+      "Barcelona",
+      "Chelsea",
+      "Liverpool",
+      "Napoli",
+      "Internacional",
+      "Cruzeiro",
+      "Fluminense"
+    ]
+  },
+  {
+    "nome": "Torneio de Verão",
+    "data": "2025-05-26 21:31:58",
+    "formato": "jogo_unico",
+    "campeao": "Liverpool",
+    "vice": "Internacional",
+    "num_times": 16,
+    "times_participantes": [
+      "Liverpool",
+      "Chelsea",
+      "Sao Paulo",
+      "Cruzeiro",
+      "Corinthians",
+      "Bayer de Munique",
+      "Internacional",
+      "Atletico Madrid",
+      "Gremio",
+      "Flamengo",
+      "Palmeiras",
+      "Real Madrid",
+      "Barcelona",
+      "Bayer Leverkusen",
+      "Borussia Dortmund",
+      "Manchester City"
+    ]
+  },
+  {
+    "nome": "Champions League 2024",
+    "data": "2025-05-26 21:41:14",
+    "formato": "ida_volta",
+    "campeao": "Flamengo",
+    "vice": "Palmeiras",
+    "num_times": 4,
+    "times_participantes": [
+      "Flamengo",
+      "Palmeiras",
+      "Real Madrid",
+      "Barcelona"
+    ]
+  },
+  {
+    "nome": "Mundial de Verão",
+    "data": "2025-05-26 21:55:34",
+    "formato": "jogo_unico",
+    "campeao": "Manchester City",
+    "vice": "Santos",
+    "num_times": 16,
+    "times_participantes": [
+      "Bayer Leverkusen",
+      "Real Madrid",
+      "Flamengo",
+      "Manchester City",
+      "Bayer de Munique",
+      "Santos",
+      "Napoli",
+      "Palmeiras",
+      "Liverpool",
+      "Internazionale",
+      "PSG",
+      "Internacional",
+      "Atletico MG",
+      "Cruzeiro",
+      "Juventus",
+      "Gremio"
+    ]
+  },
+  {
+    "nome": "Paulistão 2020",
+    "data": "2025-05-26 22:00:45",
+    "formato": "jogo_unico",
+    "campeao": "Sao Paulo",
+    "vice": "Palmeiras",
+    "num_times": 4,
+    "times_participantes": [
+      "Palmeiras",
+      "Sao Paulo",
+      "Corinthians",
+      "Santos"
+    ]
+  },
+  {
+    "nome": "Torneio de Inverno",
+    "data": "2025-05-26 22:25:12",
+    "formato": "ida_volta",
+    "campeao": "PSG",
+    "vice": "Bayer de Munique",
+    "num_times": 16,
+    "times_participantes": [
+      "Liverpool",
+      "Atletico MG",
+      "Barcelona",
+      "Flamengo",
+      "Bayer de Munique",
+      "Sao Paulo",
+      "Chelsea",
+      "Juventus",
+      "Real Madrid",
+      "Bayer Leverkusen",
+      "PSG",
+      "Atletico Madrid",
+      "Manchester City",
+      "Santos",
+      "Borussia Dortmund",
+      "Manchester United"
+    ]
+  },
+  {
+    "nome": "Copa do Brasil",
+    "data": "2025-05-27 11:50:36",
+    "formato": "ida_volta",
+    "campeao": "Internacional",
+    "vice": "Sao Paulo",
+    "num_times": 8,
+    "times_participantes": [
+      "Flamengo",
+      "Palmeiras",
+      "Sao Paulo",
+      "Corinthians",
+      "Santos",
+      "Internacional",
+      "Gremio",
+      "Atletico MG"
+    ]
+  },
+  {
+    "nome": "Torneio de Outono",
+    "data": "2025-05-27 12:03:22",
+    "formato": "jogo_unico",
+    "campeao": "Bayer de Munique",
+    "vice": "Internazionale",
+    "num_times": 16,
+    "times_participantes": [
+      "Atletico Madrid",
+      "Fluminense",
+      "Internacional",
+      "Santos",
+      "Sao Paulo",
+      "Chelsea",
+      "Bayer Leverkusen",
+      "Cruzeiro",
+      "Corinthians",
+      "Bayer de Munique",
+      "Napoli",
+      "Atletico MG",
+      "Manchester City",
+      "PSG",
+      "Palmeiras",
+      "Internazionale"
+    ]
+  },
+  {
+    "nome": "Copa Intercontinental ",
+    "data": "2025-05-27 12:16:28",
+    "formato": "ida_volta",
+    "campeao": "Internazionale",
+    "vice": "Internacional",
+    "num_times": 16,
+    "times_participantes": [
+      "Flamengo",
+      "Palmeiras",
+      "Sao Paulo",
+      "Corinthians",
+      "Chelsea",
+      "Liverpool",
+      "Santos",
+      "Napoli",
+      "Internazionale",
+      "Internacional",
+      "Gremio",
+      "Cruzeiro",
+      "Atletico MG",
+      "Fluminense",
+      "Vasco da Gama",
+      "Botafogo"
+    ]
+  },
+  {
+    "nome": "Paulistao 2021",
+    "data": "2025-05-27 12:26:25",
+    "formato": "jogo_unico",
+    "campeao": "Sao Paulo",
+    "vice": "Santos",
+    "num_times": 4,
+    "times_participantes": [
+      "Palmeiras",
+      "Sao Paulo",
+      "Corinthians",
+      "Santos"
+    ]
+  },
+  {
+    "nome": "Copa Intercontinental ",
+    "data": "2025-05-27 17:13:03",
+    "formato": "ida_volta",
+    "campeao": "Flamengo",
+    "vice": "Vasco da Gama",
+    "num_times": 16,
+    "times_participantes": [
+      "Liverpool",
+      "Internacional",
+      "Juventus",
+      "Vasco da Gama",
+      "Santos",
+      "Manchester United",
+      "Corinthians",
+      "PSG",
+      "Botafogo",
+      "Atletico Madrid",
+      "Flamengo",
+      "Sao Paulo",
+      "Barcelona",
+      "Cruzeiro",
+      "Gremio",
+      "Manchester City"
+    ]
+  },
+  {
+    "nome": "Carioca 2020",
+    "data": "2025-05-27 17:17:07",
+    "formato": "jogo_unico",
+    "campeao": "Flamengo",
+    "vice": "Fluminense",
+    "num_times": 4,
+    "times_participantes": [
+      "Flamengo",
+      "Fluminense",
+      "Vasco da Gama",
+      "Botafogo"
+    ]
+  },
+  {
+    "nome": "Copa intercontinental ",
+    "data": "2025-05-27 17:37:14",
+    "formato": "ida_volta",
+    "campeao": "Atletico Madrid",
+    "vice": "Gremio",
+    "num_times": 16,
+    "times_participantes": [
+      "Real Madrid",
+      "Bayer Leverkusen",
+      "Palmeiras",
+      "Liverpool",
+      "Barcelona",
+      "Cruzeiro",
+      "Internazionale",
+      "Botafogo",
+      "Borussia Dortmund",
+      "Gremio",
+      "Napoli",
+      "Manchester United",
+      "Manchester City",
+      "Atletico Madrid",
+      "Fluminense",
+      "Vasco da Gama"
+    ]
+  },
+  {
+    "nome": "Copa intercontinental ",
+    "data": "2025-05-27 17:58:37",
+    "formato": "ida_volta",
+    "campeao": "Borussia Dortmund",
+    "vice": "Manchester United",
+    "num_times": 16,
+    "times_participantes": [
+      "Manchester United",
+      "Sao Paulo",
+      "Napoli",
+      "Bayer Leverkusen",
+      "Fluminense",
+      "Botafogo",
+      "Borussia Dortmund",
+      "Vasco da Gama",
+      "Manchester City",
+      "Real Madrid",
+      "Atletico Madrid",
+      "Juventus",
+      "Internazionale",
+      "Santos",
+      "Bayer de Munique",
+      "Liverpool"
+    ]
+  },
+  {
+    "nome": "Copa Intercontinental",
+    "data": "2025-05-28 20:01:52",
+    "formato": "ida_volta",
+    "campeao": "Internazionale",
+    "vice": "Flamengo",
+    "num_times": 16,
+    "times_participantes": [
+      "Real Madrid",
+      "Barcelona",
+      "Manchester City",
+      "Bayer de Munique",
+      "Liverpool",
+      "PSG",
+      "Internazionale",
+      "Manchester United",
+      "Chelsea",
+      "Atletico Madrid",
+      "Bayer Leverkusen",
+      "Juventus",
+      "Napoli",
+      "Borussia Dortmund",
+      "Flamengo",
+      "Palmeiras"
+    ]
+  }
+]
