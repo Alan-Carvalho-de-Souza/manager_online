@@ -93,7 +93,7 @@ id,nome,clube_id,posicao,habilidade
 92,Keno,23,ATA,79
 93,Dusan Vlahovic,24,ATA,87
 94,Douglas Luiz,24,MEI,85
-95,Kenan Y?ld?z,24,ATA,84
+95,Kenan Yildiz,24,ATA,84
 96,Khephren Thuram,24,MEI,83
 97,Philippe Coutinho,25,MEI,87
 98,Pablo Vegetti,25,ATA,80
@@ -141,3 +141,19 @@ id,nome,clube_id,posicao,habilidade
 140,Jhon Jhon,35,MEI,80
 141,Lucas Barbosa,35,MEI,78
 142,Isidro Pitta,35,ATA,77
+143,Alan Kardec,37,ATA,76
+144,Giuliano,37,MEI,75
+145,Patrick,37,MEI,78
+146,Leozinho,37,ATA,77
+147,Edinson Cavani,38,ATA,84
+148,Carlos Palacios,38,ATA,80
+149,Ander Herrera,38,MEI,79
+150,Milton Delgado,38,MEI,80
+151,Miguel Borja,39,ATA,81
+152,Matias Rojas,39,MEI,80
+153,Giuliano Galoppo,39,MEI,79
+154,Gonzalo Tapia,39,ATA,78
+155,Antony,40,ATA,82
+156,Isco,40,MEI,83
+157,Jesus Rodriguez,40,ATA,80
+158,Johnny Cardoso,40,MEI,79
