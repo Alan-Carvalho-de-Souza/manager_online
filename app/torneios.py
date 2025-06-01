@@ -18,6 +18,8 @@ class TorneioMataMata:
         self.fase_atual = None
         self.chaves = {}
         self.resultados = {}
+        self.grupos = {}  # Novo: para armazenar dados dos grupos
+        self.classificados_grupos = []  # Novo: times que passaram da fase de grupos
         self.campeao = None
         self.vice = None
         self.historico = []
@@ -33,11 +35,11 @@ class TorneioMataMata:
         return True, "OK"
     
     def gerar_fases(self):
-        """Gera as fases do torneio baseado no número de times - VERSÃO CORRIGIDA"""
+        """Gera as fases do torneio baseado no número de times - VERSÃO COM GRUPOS"""
         num_times = len(self.times)
         fases = []
         
-        # Lógica mais clara para gerar fases
+        # Lógica para gerar fases incluindo grupos quando necessário
         if num_times == 2:
             fases = ["Final"]
         elif num_times == 4:
@@ -47,7 +49,10 @@ class TorneioMataMata:
         elif num_times == 16:
             fases = ["Oitavas de Final", "Quartas de Final", "Semifinais", "Final"]
         elif num_times == 32:
-            fases = ["Oitavas de Final", "Quartas de Final", "Semifinais", "Final"]
+            # Para 32 times: Grupos → Oitavas → Quartas → Semis → Final
+            fases = ["Fase de Grupos", "Oitavas de Final", "Quartas de Final", "Semifinais", "Final"]
+        elif num_times == 64:
+            fases = ["Fase de Grupos", "Fase de 32", "Oitavas de Final", "Quartas de Final", "Semifinais", "Final"]
         else:
             # Fallback para outros números
             times_restantes = num_times
@@ -64,6 +69,118 @@ class TorneioMataMata:
             fases.append("Final")
         
         return fases
+    
+    def sortear_grupos(self, times_participantes, num_grupos=8):
+        """Sorteia os grupos para a fase de grupos"""
+        if len(times_participantes) != 32:
+            raise ValueError("Fase de grupos requer exatamente 32 times")
+        
+        # Embaralhar times
+        times_embaralhados = times_participantes.copy()
+        random.shuffle(times_embaralhados)
+        
+        grupos = {}
+        times_por_grupo = len(times_participantes) // num_grupos
+        
+        for i in range(num_grupos):
+            letra_grupo = chr(65 + i)  # A, B, C, D, E, F, G, H
+            inicio = i * times_por_grupo
+            fim = inicio + times_por_grupo
+            
+            grupos[f"Grupo {letra_grupo}"] = {
+                'times': times_embaralhados[inicio:fim],
+                'jogos': [],
+                'tabela': [],
+                'classificados': []
+            }
+        
+        return grupos
+    
+    def simular_grupo(self, nome_grupo, times_grupo):
+        """Simula todos os jogos de um grupo e retorna a classificação"""
+        jogos = []
+        
+        # Gerar todos os confrontos do grupo (cada time joga com todos os outros)
+        for i in range(len(times_grupo)):
+            for j in range(i + 1, len(times_grupo)):
+                clube1 = times_grupo[i]
+                clube2 = times_grupo[j]
+                
+                # Simular partida
+                gols1, gols2 = simular_partida(clube1, clube2)
+                
+                jogo = {
+                    'time1': clube1,
+                    'time2': clube2,
+                    'gols1': gols1,
+                    'gols2': gols2,
+                    'vencedor': clube1 if gols1 > gols2 else clube2 if gols2 > gols1 else None
+                }
+                jogos.append(jogo)
+        
+        # Calcular classificação do grupo
+        classificacao = {}
+        for clube in times_grupo:
+            classificacao[clube['nome']] = {
+                'time': clube,
+                'pontos': 0,
+                'jogos': 0,
+                'vitorias': 0,
+                'empates': 0,
+                'derrotas': 0,
+                'gols_pro': 0,
+                'gols_contra': 0,
+                'saldo': 0
+            }
+        
+        # Processar resultados dos jogos
+        for jogo in jogos:
+            nome1 = jogo['time1']['nome']
+            nome2 = jogo['time2']['nome']
+            gols1 = jogo['gols1']
+            gols2 = jogo['gols2']
+            
+            # Atualizar estatísticas
+            classificacao[nome1]['jogos'] += 1
+            classificacao[nome2]['jogos'] += 1
+            classificacao[nome1]['gols_pro'] += gols1
+            classificacao[nome1]['gols_contra'] += gols2
+            classificacao[nome2]['gols_pro'] += gols2
+            classificacao[nome2]['gols_contra'] += gols1
+            
+            if gols1 > gols2:  # Time1 venceu
+                classificacao[nome1]['pontos'] += 3
+                classificacao[nome1]['vitorias'] += 1
+                classificacao[nome2]['derrotas'] += 1
+            elif gols2 > gols1:  # Time2 venceu
+                classificacao[nome2]['pontos'] += 3
+                classificacao[nome2]['vitorias'] += 1
+                classificacao[nome1]['derrotas'] += 1
+            else:  # Empate
+                classificacao[nome1]['pontos'] += 1
+                classificacao[nome2]['pontos'] += 1
+                classificacao[nome1]['empates'] += 1
+                classificacao[nome2]['empates'] += 1
+        
+        # Calcular saldo de gols
+        for stats in classificacao.values():
+            stats['saldo'] = stats['gols_pro'] - stats['gols_contra']
+        
+        # Ordenar por pontos, saldo de gols, gols marcados
+        classificacao_ordenada = sorted(
+            classificacao.values(),
+            key=lambda x: (x['pontos'], x['saldo'], x['gols_pro']),
+            reverse=True
+        )
+        
+        # Os 2 primeiros se classificam
+        classificados = [classificacao_ordenada[0]['time'], classificacao_ordenada[1]['time']]
+        
+        return {
+            'jogos': jogos,
+            'classificacao': classificacao_ordenada,
+            'classificados': classificados
+        }
     
     def sortear_chaves(self, times_participantes):
         """Sorteia as chaves de uma fase"""
@@ -84,7 +201,7 @@ class TorneioMataMata:
         
         return chaves
     
-    def simular_penaltis(self, time1, time2):
+    def simular_penaltis(self, clube1, clube2):
         """Simula disputa de pênaltis"""
         penaltis1 = 0
         penaltis2 = 0
@@ -118,8 +235,8 @@ class TorneioMataMata:
         
         # Se ainda empatado, sorteio
         if penaltis1 == penaltis2:
-            vencedor = random.choice([time1['nome'], time2['nome']])
-            if vencedor == time1['nome']:
+            vencedor = random.choice([clube1['nome'], clube2['nome']])
+            if vencedor == clube1['nome']:
                 penaltis1 += 1
             else:
                 penaltis2 += 1
@@ -128,22 +245,22 @@ class TorneioMataMata:
     
     def determinar_vencedor_chave(self, chave):
         """Determina o vencedor de uma chave baseado no formato"""
-        time1 = chave['time1']
-        time2 = chave['time2']
+        clube1 = chave['time1']
+        clube2 = chave['time2']
         
         if self.formato == "jogo_unico":
             gols1, gols2 = chave['resultado_ida']
             
             if gols1 > gols2:
-                return time1, f"{gols1}-{gols2}"
+                return clube1, f"{gols1}-{gols2}"
             elif gols2 > gols1:
-                return time2, f"{gols1}-{gols2}"
+                return clube2, f"{gols1}-{gols2}"
             else:
-                pen1, pen2 = self.simular_penaltis(time1, time2)
+                pen1, pen2 = self.simular_penaltis(clube1, clube2)
                 if pen1 > pen2:
-                    return time1, f"{gols1}-{gols2} ({pen1}-{pen2} pên.)"
+                    return clube1, f"{gols1}-{gols2} ({pen1}-{pen2} pên.)"
                 else:
-                    return time2, f"{gols1}-{gols2} ({pen1}-{pen2} pên.)"
+                    return clube2, f"{gols1}-{gols2} ({pen1}-{pen2} pên.)"
         
         else:  # ida_volta
             gols1_ida, gols2_ida = chave['resultado_ida']
@@ -153,25 +270,160 @@ class TorneioMataMata:
             total_time2 = gols2_ida + gols2_volta
             
             if total_time1 > total_time2:
-                return time1, f"Agregado: {total_time1}-{total_time2}"
+                return clube1, f"Agregado: {total_time1}-{total_time2}"
             elif total_time2 > total_time1:
-                return time2, f"Agregado: {total_time1}-{total_time2}"
+                return clube2, f"Agregado: {total_time1}-{total_time2}"
             else:
                 # Verificar gols fora
                 gols_fora_time1 = gols1_volta
                 gols_fora_time2 = gols2_ida
                 
                 if gols_fora_time1 > gols_fora_time2:
-                    return time1, f"Agregado: {total_time1}-{total_time2} (gols fora)"
+                    return clube1, f"Agregado: {total_time1}-{total_time2} (gols fora)"
                 elif gols_fora_time2 > gols_fora_time1:
-                    return time2, f"Agregado: {total_time1}-{total_time2} (gols fora)"
+                    return clube2, f"Agregado: {total_time1}-{total_time2} (gols fora)"
                 else:
                     # Pênaltis
-                    pen1, pen2 = self.simular_penaltis(time1, time2)
+                    pen1, pen2 = self.simular_penaltis(clube1, clube2)
                     if pen1 > pen2:
-                        return time1, f"Agregado: {total_time1}-{total_time2} ({pen1}-{pen2} pên.)"
+                        return clube1, f"Agregado: {total_time1}-{total_time2} ({pen1}-{pen2} pên.)"
                     else:
-                        return time2, f"Agregado: {total_time1}-{total_time2} ({pen1}-{pen2} pên.)"
+                        return clube2, f"Agregado: {total_time1}-{total_time2} ({pen1}-{pen2} pên.)"
+
+def exibir_grupos(grupos):
+    """Exibe os grupos da fase de grupos"""
+    st.subheader("🏟️ Fase de Grupos - Sorteio")
+    
+    # Exibir grupos em colunas
+    cols = st.columns(4)  # 4 colunas para mostrar 2 grupos por linha
+    
+    for i, (nome_grupo, dados_grupo) in enumerate(grupos.items()):
+        with cols[i % 4]:
+            st.markdown(f"### {nome_grupo}")
+            
+            for j, clube in enumerate(dados_grupo['times']):
+                # Mostrar logo se disponível
+                if clube.get('logo_base64'):
+                    st.markdown(
+                        f"""
+                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                            <img src="data:image/png;base64,{clube['logo_base64']}" 
+                                 style="width: 25px; height: 25px; margin-right: 8px;">
+                            <span style="font-size: 14px;">{clube['nome']}</span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.write(f"• {clube['nome']}")
+    
+    st.markdown("---")
+
+def exibir_resultados_grupo(nome_grupo, resultados_grupo):
+    """Exibe os resultados de um grupo"""
+    st.subheader(f"📊 {nome_grupo} - Resultados")
+    
+    # Dividir em duas colunas: jogos e classificação
+    col1, col2 = st.columns([1, 1])
+    
+    with col1:
+        st.markdown("#### 🏟️ Jogos Realizados")
+        for jogo in resultados_grupo['jogos']:
+            resultado_texto = f"{jogo['time1']['nome']} {jogo['gols1']} x {jogo['gols2']} {jogo['time2']['nome']}"
+            if jogo['vencedor']:
+                st.success(f"✅ {resultado_texto}")
+            else:
+                st.info(f"🔄 {resultado_texto}")
+    
+    with col2:
+        st.markdown("#### 📈 Classificação")
+        
+        # Cabeçalho da tabela
+        st.markdown("""
+        | Pos | Time | Pts | J | V | E | D | GP | GC | SG |
+        |-----|------|-----|---|---|---|---|----|----|----| 
+        """)
+        
+        # Dados da classificação
+        for i, stats in enumerate(resultados_grupo['classificacao']):
+            pos = i + 1
+            nome = stats['time']['nome']
+            pts = stats['pontos']
+            j = stats['jogos']
+            v = stats['vitorias']
+            e = stats['empates']
+            d = stats['derrotas']
+            gp = stats['gols_pro']
+            gc = stats['gols_contra']
+            sg = stats['saldo']
+            
+            # Destacar classificados
+            if i < 2:
+                classificado = "🟢"  # Verde para classificados
+            else:
+                classificado = "🔴"  # Vermelho para eliminados
+            
+            st.markdown(f"| {classificado} {pos}º | {nome} | {pts} | {j} | {v} | {e} | {d} | {gp} | {gc} | {sg} |")
+        
+        # Legenda
+        st.caption("🟢 Classificado para as Oitavas | 🔴 Eliminado")
+        
+        # Mostrar classificados
+        classificados_nomes = [clube['nome'] for clube in resultados_grupo['classificados']]
+        st.success(f"🏆 Classificados: {' e '.join(classificados_nomes)}")
+
+def simular_fase_grupos_completa(grupos):
+    """Simula toda a fase de grupos"""
+    st.subheader("⚽ Simulando Fase de Grupos")
+    
+    todos_classificados = []
+    resultados_todos_grupos = {}
+    
+    # Simular cada grupo
+    for nome_grupo, dados_grupo in grupos.items():
+        st.markdown(f"### 🏟️ Simulando {nome_grupo}")
+        
+        # Criar instância temporária para usar o método simular_grupo
+        torneio_temp = TorneioMataMata("temp", [], "ida_volta")
+        resultados_grupo = torneio_temp.simular_grupo(nome_grupo, dados_grupo['times'])
+        
+        # Exibir resultados
+        with st.expander(f"📊 Ver detalhes do {nome_grupo}", expanded=False):
+            exibir_resultados_grupo(nome_grupo, resultados_grupo)
+        
+        # Adicionar classificados
+        todos_classificados.extend(resultados_grupo['classificados'])
+        resultados_todos_grupos[nome_grupo] = resultados_grupo
+        
+        # Pequena pausa para visualização
+        import time as time_module
+        time_module.sleep(0.3)
+    
+    # Resumo final da fase de grupos
+    st.success(f"✅ Fase de Grupos Concluída! {len(todos_classificados)} times classificados para as Oitavas de Final")
+    
+    # Mostrar todos os classificados organizados
+    st.markdown("### 🏆 Times Classificados para as Oitavas de Final")
+    
+    cols = st.columns(4)
+    for i, clube in enumerate(todos_classificados):
+        with cols[i % 4]:
+            if clube.get('logo_base64'):
+                st.markdown(
+                    f"""
+                    <div style="text-align: center; margin-bottom: 10px;">
+                        <img src="data:image/png;base64,{clube['logo_base64']}" 
+                             style="width: 40px; height: 40px;">
+                        <br>
+                        <small>{clube['nome']}</small>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            else:
+                st.markdown(f"**{clube['nome']}**")
+    
+    return todos_classificados, resultados_todos_grupos
 
 def exibir_chave_torneio(chaves, fase_nome, formato="ida_volta"):
     """Exibe as chaves de uma fase do torneio"""
@@ -277,7 +529,8 @@ def simular_fase_completa(chaves, fase_nome, formato="ida_volta"):
         st.info(f"📊 {detalhes}")
         st.markdown("---")
         
-        time.sleep(0.5)
+        import time as time_module
+        time_module.sleep(0.5)
     
     return vencedores
 
@@ -304,7 +557,8 @@ def salvar_historico_torneio(torneio):
             'campeao': torneio.campeao['nome'] if torneio.campeao else None,
             'vice': torneio.vice['nome'] if torneio.vice else None,
             'num_times': len(torneio.times),
-            'times_participantes': [time['nome'] for time in torneio.times]
+            'times_participantes': [clube['nome'] for clube in torneio.times],
+            'teve_grupos': len(torneio.times) == 32  # Novo campo para indicar se teve fase de grupos
         }
         
         # Carregar histórico existente
@@ -383,7 +637,10 @@ def exibir_historico_torneios():
         
         # Lista de torneios
         for i, torneio in enumerate(historico_ordenado):
-            st.markdown(f"### 🏆 {torneio.get('nome', 'Torneio')} ({torneio.get('data', 'N/A')[:10]})")
+            teve_grupos = torneio.get('teve_grupos', False)
+            icone_grupos = " 🏟️" if teve_grupos else ""
+            
+            st.markdown(f"### 🏆 {torneio.get('nome', 'Torneio')}{icone_grupos} ({torneio.get('data', 'N/A')[:10]})")
             
             col1, col2 = st.columns(2)
             
@@ -396,6 +653,8 @@ def exibir_historico_torneios():
             with col2:
                 st.write(f"**👥 Times:** {torneio.get('num_times', 'N/A')}")
                 st.write(f"**📅 Data:** {torneio.get('data', 'N/A')}")
+                if teve_grupos:
+                    st.write("**🏟️ Formato:** Com Fase de Grupos")
             
             st.write("**🏟️ Times Participantes:**")
             participantes = torneio.get('times_participantes', [])
@@ -438,6 +697,10 @@ def pagina_torneios(clubes):
         with col2:
             opcoes_times = [4, 8, 16, 32]
             num_times = st.selectbox("👥 Número de Times", opcoes_times)
+            
+            # Avisar sobre fase de grupos para 32 times
+            if num_times == 32:
+                st.info("🏟️ Com 32 times, o torneio terá Fase de Grupos (8 grupos de 4 times)")
         
         if len(clubes) < num_times:
             st.error(f"❌ Você precisa ter pelo menos {num_times} times cadastrados. Atualmente tem {len(clubes)}.")
@@ -458,12 +721,12 @@ def pagina_torneios(clubes):
             times_selecionados = times_ordenados[:num_times]
             
             st.write("**Times Selecionados (por força):**")
-            for i, time in enumerate(times_selecionados):
+            for i, clube in enumerate(times_selecionados):
                 col1, col2 = st.columns([3, 1])
                 with col1:
-                    st.write(f"{i+1}. {time['nome']}")
+                    st.write(f"{i+1}. {clube['nome']}")
                 with col2:
-                    st.write(f"Força: {time['forca_geral']}")
+                    st.write(f"Força: {clube['forca_geral']}")
         
         elif metodo_selecao == "Manual":
             nomes_clubes = [clube['nome'] for clube in clubes.values()]
@@ -487,8 +750,8 @@ def pagina_torneios(clubes):
             if 'times_sorteados' in st.session_state:
                 times_selecionados = st.session_state.times_sorteados
                 st.write("**Times Sorteados:**")
-                for i, time in enumerate(times_selecionados):
-                    st.write(f"{i+1}. {time['nome']}")
+                for i, clube in enumerate(times_selecionados):
+                    st.write(f"{i+1}. {clube['nome']}")
         
         # Criar torneio se tudo estiver pronto
         if len(times_selecionados) == num_times:
@@ -505,6 +768,7 @@ def pagina_torneios(clubes):
                         st.session_state.fase_atual_idx = 0
                         st.session_state.times_atuais = times_selecionados.copy()
                         st.session_state.fases_completadas = []
+                        st.session_state.fase_grupos_concluida = False
                         if 'times_sorteados' in st.session_state:
                             del st.session_state.times_sorteados
                         st.rerun()
@@ -536,9 +800,11 @@ def pagina_torneios(clubes):
             - Formato: Ida e Volta ou Jogo Único
             - Times: 4, 8, 16 ou 32 participantes
             - Seleção: Automática, Manual ou Sorteio
+            - **NOVO:** Fase de Grupos automática para 32 times
             
             **🎯 Critérios de Desempate:**
-            - Ida e Volta: Saldo → Gols fora → Pênaltis
+            - Grupos: Pontos → Saldo → Gols marcados
+            - Mata-mata: Ida e Volta → Gols fora → Pênaltis
             - Jogo Único: Pênaltis direto
             """)
         
@@ -548,11 +814,13 @@ def pagina_torneios(clubes):
             1. Configure o nome do torneio
             2. Escolha o formato (ida/volta ou único)
             3. Defina quantos times participarão
-            4. Selecione os times participantes
-            5. Clique em "Criar e Simular Torneio"
-            6. Acompanhe fase por fase até a final!
+            4. **Para 32 times:** Fase de grupos automática
+            5. Selecione os times participantes
+            6. Clique em "Criar e Simular Torneio"
+            7. Acompanhe fase por fase até a final!
             
             **💾 Recursos:**
+            - **NOVO:** Sistema completo de grupos
             - Histórico automático de torneios
             - Estatísticas de campeões
             - Sistema de pênaltis realístico
@@ -560,10 +828,23 @@ def pagina_torneios(clubes):
             """)
         
         st.markdown("---")
+        
+        # Nova seção explicando a fase de grupos
+        st.subheader("🏟️ Fase de Grupos (32 times)")
+        st.markdown("""
+        **Como funciona:**
+        - 32 times são divididos em 8 grupos (A, B, C, D, E, F, G, H)
+        - Cada grupo tem 4 times
+        - Todos se enfrentam dentro do grupo (3 jogos por time)
+        - Os 2 melhores de cada grupo se classificam (16 times)
+        - Critério: Pontos → Saldo de gols → Gols marcados
+        - Segue para as Oitavas de Final com 16 times
+        """)
+        
         st.info("💡 **Dica:** Use a seleção automática para pegar os times mais fortes, ou faça um sorteio para mais surpresas!")
 
 def simular_torneio_completo(torneio):
-    """Simula um torneio completo do início ao fim - VERSÃO COM FASES CORRIGIDAS"""
+    """Simula um torneio completo do início ao fim - VERSÃO COM GRUPOS"""
     st.subheader(f"🏆 {torneio.nome}")
     
     # Informações do torneio
@@ -573,15 +854,16 @@ def simular_torneio_completo(torneio):
     with col2:
         st.metric("⚽ Formato", "Ida e Volta" if torneio.formato == "ida_volta" else "Jogo Único")
     with col3:
-        total_jogos = len(torneio.times) - 1 if torneio.formato == "jogo_unico" else (len(torneio.times) - 1) * 2
+        tem_grupos = len(torneio.times) == 32
+        if tem_grupos:
+            total_jogos = 48 + 15  # 48 jogos nos grupos + 15 no mata-mata
+        else:
+            total_jogos = len(torneio.times) - 1 if torneio.formato == "jogo_unico" else (len(torneio.times) - 1) * 2
         st.metric("🏟️ Total de Jogos", total_jogos)
     
     # Gerar fases
     fases = torneio.gerar_fases()
     st.write(f"**📋 Fases do Torneio:** {' → '.join(fases)}")
-    
-    # DEBUG: Mostrar informações de controle
-    st.info(f"🔍 **DEBUG:** Total de fases: {len(fases)} | Fases: {fases}")
     
     # Inicializar estados se necessário
     if 'fase_atual_idx' not in st.session_state:
@@ -593,10 +875,8 @@ def simular_torneio_completo(torneio):
     if 'fases_completadas' not in st.session_state:
         st.session_state.fases_completadas = []
     
-    # Debug: mostrar estado atual
-    fase_atual_nome = fases[st.session_state.fase_atual_idx] if st.session_state.fase_atual_idx < len(fases) else "Concluído"
-    st.info(f"🎯 **Fase Atual:** {fase_atual_nome} (Índice: {st.session_state.fase_atual_idx})")
-    st.info(f"👥 **Times na Fase Atual:** {[t['nome'] for t in st.session_state.times_atuais]} ({len(st.session_state.times_atuais)} times)")
+    if 'fase_grupos_concluida' not in st.session_state:
+        st.session_state.fase_grupos_concluida = False
     
     # Verificar se torneio já foi concluído
     if st.session_state.fase_atual_idx >= len(fases):
@@ -610,7 +890,7 @@ def simular_torneio_completo(torneio):
         
         if st.button("🎉 Novo Torneio"):
             # Limpar todos os estados
-            keys_to_delete = ['torneio_atual', 'fase_atual_idx', 'times_atuais', 'fases_completadas']
+            keys_to_delete = ['torneio_atual', 'fase_atual_idx', 'times_atuais', 'fases_completadas', 'fase_grupos_concluida']
             for key in keys_to_delete:
                 if key in st.session_state:
                     del st.session_state[key]
@@ -621,11 +901,14 @@ def simular_torneio_completo(torneio):
     for i, fase in enumerate(fases):
         if i < st.session_state.fase_atual_idx:
             st.subheader(f"✅ {fase} (Concluída)")
-            if fase in st.session_state.fases_completadas:
-                fase_info = st.session_state.fases_completadas[i] if i < len(st.session_state.fases_completadas) else {}
-                if 'vencedores' in fase_info:
-                    vencedores_nomes = [v['nome'] for v in fase_info['vencedores']]
-                    st.success(f"🏆 Classificados: {', '.join(vencedores_nomes)}")
+            if i < len(st.session_state.fases_completadas):
+                fase_info = st.session_state.fases_completadas[i]
+                if fase == "Fase de Grupos":
+                    st.success(f"🏆 {len(fase_info.get('classificados', []))} times classificados para as Oitavas")
+                else:
+                    if 'vencedores' in fase_info:
+                        vencedores_nomes = [v['nome'] for v in fase_info['vencedores']]
+                        st.success(f"🏆 Classificados: {', '.join(vencedores_nomes)}")
     
     # Mostrar fase atual
     if st.session_state.fase_atual_idx < len(fases):
@@ -634,66 +917,107 @@ def simular_torneio_completo(torneio):
         st.markdown("---")
         st.subheader(f"🎯 FASE ATUAL: {fase_atual}")
         
-        # Verificar se temos times suficientes para a fase
-        if len(st.session_state.times_atuais) < 2:
-            st.error("❌ Erro: Não há times suficientes para continuar o torneio!")
-            return torneio
-        
-        # Sortear chaves para a fase atual
-        chaves = torneio.sortear_chaves(st.session_state.times_atuais)
-        
-        # Exibir chaves
-        st.subheader(f"🎲 Sorteio - {fase_atual}")
-        exibir_chave_torneio(chaves, f"Chaves - {fase_atual}", torneio.formato)
-        
-        # Botão para simular a fase
-        col1, col2, col3 = st.columns([1, 1, 1])
-        with col2:
-            if st.button(f"⚽ Simular {fase_atual}", key=f"simular_{fase_atual}_{st.session_state.fase_atual_idx}", use_container_width=True, type="primary"):
-                # Simular a fase
-                vencedores = simular_fase_completa(chaves, fase_atual, torneio.formato)
+        # LÓGICA ESPECIAL PARA FASE DE GRUPOS
+        if fase_atual == "Fase de Grupos":
+            if not st.session_state.fase_grupos_concluida:
+                # Sortear grupos
+                grupos = torneio.sortear_grupos(st.session_state.times_atuais)
+                torneio.grupos = grupos
                 
-                # Salvar informações da fase
-                torneio.chaves[fase_atual] = chaves
-                torneio.resultados[fase_atual] = vencedores
+                # Exibir sorteio dos grupos
+                exibir_grupos(grupos)
                 
-                # Salvar na lista de fases completadas
-                fase_info = {
-                    'nome': fase_atual,
-                    'chaves': chaves,
-                    'vencedores': vencedores
-                }
-                st.session_state.fases_completadas.append(fase_info)
-                
-                st.success(f"✅ {fase_atual} concluída!")
-                st.info(f"🏆 Classificados para próxima fase: {[v['nome'] for v in vencedores]}")
-                
-                # Verificar se é a final
-                if fase_atual == "Final":
-                    if len(vencedores) == 1:
-                        # Definir campeão
-                        torneio.campeao = vencedores[0]
+                # Botão para simular fase de grupos
+                col1, col2, col3 = st.columns([1, 1, 1])
+                with col2:
+                    if st.button("⚽ Simular Fase de Grupos", use_container_width=True, type="primary"):
+                        # Simular todos os grupos
+                        classificados, resultados_grupos = simular_fase_grupos_completa(grupos)
                         
-                        # Encontrar vice-campeão
-                        for chave in chaves:
-                            if chave['vencedor'] == torneio.campeao:
-                                torneio.vice = chave['time1'] if chave['time2'] == torneio.campeao else chave['time2']
-                                break
+                        # Salvar resultados
+                        torneio.classificados_grupos = classificados
+                        torneio.resultados = {"Fase de Grupos": resultados_grupos}
                         
-                        # Salvar histórico
-                        sucesso_save = salvar_historico_torneio(torneio)
+                        # Atualizar estados
+                        st.session_state.times_atuais = classificados
+                        st.session_state.fase_grupos_concluida = True
+                        st.session_state.fase_atual_idx += 1
                         
-                        # Marcar torneio como concluído
-                        st.session_state.fase_atual_idx = len(fases)  # Marca como concluído
+                        # Salvar na lista de fases completadas
+                        fase_info = {
+                            'nome': fase_atual,
+                            'grupos': grupos,
+                            'classificados': classificados,
+                            'resultados': resultados_grupos
+                        }
+                        st.session_state.fases_completadas.append(fase_info)
                         
                         st.rerun()
+            else:
+                st.success("✅ Fase de Grupos já foi concluída!")
+        
+        # LÓGICA PARA FASES MATA-MATA
+        else:
+            # Verificar se temos times suficientes para a fase
+            if len(st.session_state.times_atuais) < 2:
+                st.error("❌ Erro: Não há times suficientes para continuar o torneio!")
+                return torneio
+            
+            # Sortear chaves para a fase atual
+            chaves = torneio.sortear_chaves(st.session_state.times_atuais)
+            
+            # Exibir chaves
+            st.subheader(f"🎲 Sorteio - {fase_atual}")
+            exibir_chave_torneio(chaves, f"Chaves - {fase_atual}", torneio.formato)
+            
+            # Botão para simular a fase
+            col1, col2, col3 = st.columns([1, 1, 1])
+            with col2:
+                if st.button(f"⚽ Simular {fase_atual}", key=f"simular_{fase_atual}_{st.session_state.fase_atual_idx}", use_container_width=True, type="primary"):
+                    # Simular a fase
+                    vencedores = simular_fase_completa(chaves, fase_atual, torneio.formato)
+                    
+                    # Salvar informações da fase
+                    torneio.chaves[fase_atual] = chaves
+                    torneio.resultados[fase_atual] = vencedores
+                    
+                    # Salvar na lista de fases completadas
+                    fase_info = {
+                        'nome': fase_atual,
+                        'chaves': chaves,
+                        'vencedores': vencedores
+                    }
+                    st.session_state.fases_completadas.append(fase_info)
+                    
+                    st.success(f"✅ {fase_atual} concluída!")
+                    st.info(f"🏆 Classificados para próxima fase: {[v['nome'] for v in vencedores]}")
+                    
+                    # Verificar se é a final
+                    if fase_atual == "Final":
+                        if len(vencedores) == 1:
+                            # Definir campeão
+                            torneio.campeao = vencedores[0]
+                            
+                            # Encontrar vice-campeão
+                            for chave in chaves:
+                                if chave['vencedor'] == torneio.campeao:
+                                    torneio.vice = chave['time1'] if chave['time2'] == torneio.campeao else chave['time2']
+                                    break
+                            
+                            # Salvar histórico
+                            sucesso_save = salvar_historico_torneio(torneio)
+                            
+                            # Marcar torneio como concluído
+                            st.session_state.fase_atual_idx = len(fases)  # Marca como concluído
+                            
+                            st.rerun()
+                        else:
+                            st.error("❌ Erro: Final deveria ter apenas 1 vencedor!")
                     else:
-                        st.error("❌ Erro: Final deveria ter apenas 1 vencedor!")
-                else:
-                    # Avançar para próxima fase
-                    st.session_state.times_atuais = vencedores
-                    st.session_state.fase_atual_idx += 1
-                    st.rerun()
+                        # Avançar para próxima fase
+                        st.session_state.times_atuais = vencedores
+                        st.session_state.fase_atual_idx += 1
+                        st.rerun()
     
     # Mostrar fases futuras
     for i, fase in enumerate(fases):
@@ -702,9 +1026,6 @@ def simular_torneio_completo(torneio):
             st.info("Esta fase será desbloqueada após a conclusão da fase anterior.")
     
     return torneio
-# ADICIONE ESTA FUNÇÃO AO FINAL DO ARQUIVO app/torneios.py
-
-# SUBSTITUA A FUNÇÃO exibir_classificacao_geral_torneios() no arquivo app/torneios.py
 
 def exibir_classificacao_geral_torneios(clubes):
     """
@@ -734,7 +1055,6 @@ def exibir_classificacao_geral_torneios(clubes):
     # Verificar se arquivo não está vazio
     try:
         tamanho_arquivo = os.path.getsize(arquivo_historico)
-        st.info(f"🔍 Debug: Arquivo encontrado com {tamanho_arquivo} bytes")
         
         if tamanho_arquivo == 0:
             st.warning("⚠️ Arquivo de histórico está vazio. Realize alguns torneios primeiro!")
@@ -754,15 +1074,11 @@ def exibir_classificacao_geral_torneios(clubes):
             st.warning("⚠️ Arquivo de histórico está vazio. Realize alguns torneios primeiro!")
             return
         
-        # Debug: mostrar primeiros caracteres
-        st.info(f"🔍 Debug: Primeiros 50 caracteres do arquivo: {conteudo[:50]}...")
-        
         # Tentar fazer parse do JSON
         try:
             historico_torneios = json.loads(conteudo)
         except json.JSONDecodeError as e:
             st.error(f"❌ Erro no formato JSON: {e}")
-            st.error(f"Conteúdo problemático: {conteudo[:100]}...")
             
             # Opção para recriar arquivo
             if st.button("🔧 Recriar Arquivo de Histórico"):
@@ -801,10 +1117,6 @@ def exibir_classificacao_geral_torneios(clubes):
                 vice = torneio.get('vice')
                 participantes = torneio.get('times_participantes', [])
                 
-                # Debug: mostrar dados do torneio
-                if i < 3:  # Mostrar apenas os 3 primeiros para debug
-                    st.info(f"🔍 Debug Torneio {i+1}: Campeão: {campeao}, Vice: {vice}, Participantes: {len(participantes)}")
-                
                 # Contar campeões
                 if campeao:
                     times_todos.add(campeao)
@@ -828,8 +1140,6 @@ def exibir_classificacao_geral_torneios(clubes):
         if not times_todos:
             st.warning("⚠️ Nenhum dado válido encontrado nos torneios. Verifique o formato dos dados.")
             return
-        
-        st.success(f"✅ Processados dados de {len(times_todos)} times únicos")
         
         # Estatísticas gerais no topo
         col1, col2, col3, col4 = st.columns(4)
@@ -1059,13 +1369,23 @@ def exibir_classificacao_geral_torneios(clubes):
             
             # Estatísticas por formato de torneio
             formatos_stats = {}
+            grupos_stats = {'com_grupos': 0, 'sem_grupos': 0}
+            
             for torneio in historico_torneios:
                 formato = torneio.get('formato', 'N/A')
+                teve_grupos = torneio.get('teve_grupos', False)
+                
                 if formato not in formatos_stats:
                     formatos_stats[formato] = {'count': 0, 'campeoes': []}
                 formatos_stats[formato]['count'] += 1
                 if torneio.get('campeao'):
                     formatos_stats[formato]['campeoes'].append(torneio['campeao'])
+                
+                # Contar torneios com grupos
+                if teve_grupos:
+                    grupos_stats['com_grupos'] += 1
+                else:
+                    grupos_stats['sem_grupos'] += 1
             
             st.subheader("⚽ Estatísticas por Formato")
             for formato, stats in formatos_stats.items():
@@ -1076,6 +1396,15 @@ def exibir_classificacao_geral_torneios(clubes):
                     campeao_formato = max(set(stats['campeoes']), key=stats['campeoes'].count)
                     vitorias_formato = stats['campeoes'].count(campeao_formato)
                     st.write(f"  👑 Maior campeão: {campeao_formato} ({vitorias_formato}x)")
+            
+            # Estatísticas de grupos
+            st.markdown("---")
+            st.subheader("🏟️ Estatísticas de Fase de Grupos")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.metric("Com Grupos", grupos_stats['com_grupos'])
+            with col2:
+                st.metric("Sem Grupos", grupos_stats['sem_grupos'])
             
             st.markdown("---")
             
@@ -1091,7 +1420,8 @@ def exibir_classificacao_geral_torneios(clubes):
                     tamanhos_stats[num_times]['campeoes'].append(torneio['campeao'])
             
             for num_times, stats in sorted(tamanhos_stats.items()):
-                st.write(f"**{num_times} times:** {stats['count']} torneios")
+                grupos_text = " (com grupos)" if num_times == 32 else ""
+                st.write(f"**{num_times} times{grupos_text}:** {stats['count']} torneios")
                 if stats['campeoes']:
                     campeao_tamanho = max(set(stats['campeoes']), key=stats['campeoes'].count)
                     vitorias_tamanho = stats['campeoes'].count(campeao_tamanho)
@@ -1107,7 +1437,8 @@ def exibir_classificacao_geral_torneios(clubes):
                 col1, col2, col3 = st.columns([2, 1, 1])
                 
                 with col1:
-                    st.write(f"**{torneio.get('nome', 'Torneio')}**")
+                    grupos_icon = " 🏟️" if torneio.get('teve_grupos') else ""
+                    st.write(f"**{torneio.get('nome', 'Torneio')}{grupos_icon}**")
                     st.caption(f"📅 {torneio.get('data', 'N/A')[:10]}")
                 
                 with col2:
@@ -1119,14 +1450,6 @@ def exibir_classificacao_geral_torneios(clubes):
     except Exception as e:
         st.error(f"❌ Erro ao carregar dados dos torneios: {e}")
         st.error(f"Tipo do erro: {type(e).__name__}")
-        
-        # Debug adicional
-        try:
-            with open(arquivo_historico, 'r', encoding='utf-8') as f:
-                conteudo_debug = f.read()
-            st.text_area("🔍 Conteúdo do arquivo (para debug):", conteudo_debug[:500], height=150)
-        except:
-            st.error("Não foi possível ler o arquivo para debug")
         
         # Opção para limpar/recriar arquivo
         if st.button("🔧 Recriar Arquivo de Histórico Limpo"):
