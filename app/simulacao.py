@@ -238,12 +238,12 @@ def simular_partida(clube1, clube2):
         tempo_inicial = 0 if periodo == 0 else 45
         tempo_final = 45 if periodo == 0 else 90
         
-        num_eventos = random.randint(8, 12)
+        num_eventos = random.randint(10, 14)
         
         for _ in range(num_eventos):
             # Avança o tempo
             if minutos < tempo_final:
-                minutos = min(minutos + random.randint(3, 8), tempo_final)
+                minutos = min(minutos + random.randint(4, 9), tempo_final)
             
             # Atualiza progresso
             progresso_percentual = int((minutos / 90) * 100)
@@ -268,16 +268,16 @@ def simular_partida(clube1, clube2):
             time_atacante = 1 if random.random() < prob_clube1 else 2
             
             # Chance de finalização (20%)
-            if random.random() < 0.20:
+            if random.random() < 0.40:
                 if time_atacante == 1:
                     finalizacoes1 += 1
                     
                     # Chance da finalização ir no gol (60%)
-                    if random.random() < 0.60:
+                    if random.random() < 0.70:
                         finalizacoes_gol1 += 1
                         
                         # Chance de gol (40% das finalizações no gol)
-                        if random.random() < 0.40:
+                        if random.random() < 0.45:
                             gols1 += 1
                             jogadores = [j for j in clube1['jogadores'] if j.get('posicao') != 'Goleiro']
                             if jogadores:
