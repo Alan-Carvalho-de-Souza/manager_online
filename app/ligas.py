@@ -1,4 +1,4 @@
-# Arquivo: app/ligas.py
+# Arquivo: app/ligas.py - VERSÃO COM ARTILHEIROS
 import streamlit as st
 import pandas as pd
 import json
@@ -42,6 +42,193 @@ def determinar_vencedor_partida(gols_casa, gols_visitante, time_casa, time_visit
         return time_visitante
     else:
         return "Empate"
+
+def calcular_artilheiros_liga(partidas):
+    """
+    Calcula os artilheiros da liga baseado nos resultados das partidas.
+    
+    Args:
+        partidas: Lista de dicionários com os resultados das partidas
+    
+    Returns:
+        list: Lista ordenada de tuplas (jogador, time, gols) dos artilheiros
+    """
+    contagem_gols = {}
+    
+    for partida in partidas:
+        # Extrair artilheiros da partida
+        artilheiros = partida.get('artilheiros', [])
+        
+        for artilheiro in artilheiros:
+            if artilheiro:  # Verificar se não está vazio
+                # O formato é "Nome do Jogador (Nome do Time)"
+                if '(' in artilheiro and ')' in artilheiro:
+                    nome_completo = artilheiro.strip()
+                    # Separar nome do jogador do time
+                    try:
+                        nome_jogador = nome_completo.split(' (')[0].strip()
+                        nome_time = nome_completo.split(' (')[1].replace(')', '').strip()
+                        
+                        # Chave única: jogador + time (caso haja jogadores com mesmo nome)
+                        chave_jogador = f"{nome_jogador}|{nome_time}"
+                        
+                        if chave_jogador in contagem_gols:
+                            contagem_gols[chave_jogador]['gols'] += 1
+                        else:
+                            contagem_gols[chave_jogador] = {
+                                'nome': nome_jogador,
+                                'time': nome_time,
+                                'gols': 1
+                            }
+                    except IndexError:
+                        # Se houver problema no formato, pular este artilheiro
+                        continue
+    
+    # Converter para lista e ordenar por número de gols
+    artilheiros_ordenados = []
+    for dados in contagem_gols.values():
+        artilheiros_ordenados.append((dados['nome'], dados['time'], dados['gols']))
+    
+    # Ordenar por gols (decrescente), depois por nome (crescente)
+    artilheiros_ordenados.sort(key=lambda x: (-x[2], x[0]))
+    
+    return artilheiros_ordenados
+
+def exibir_artilheiros_liga(partidas, clubes, top_n=20):
+    """
+    Exibe os artilheiros da liga com formatação visual atraente.
+    
+    Args:
+        partidas: Lista com os resultados das partidas
+        clubes: Dicionário com dados dos clubes (para logos)
+        top_n: Número de artilheiros a exibir (padrão: 20)
+    """
+    st.subheader("⚽ Artilheiros da Liga")
+    
+    # Calcular artilheiros
+    artilheiros = calcular_artilheiros_liga(partidas)
+    
+    if not artilheiros:
+        st.warning("Nenhum gol foi registrado na liga.")
+        return
+    
+    # Limitar ao top N
+    top_artilheiros = artilheiros[:top_n]
+    
+    # Estatísticas gerais
+    total_gols = sum(dados[2] for dados in artilheiros)
+    total_artilheiros = len(artilheiros)
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("⚽ Total de Gols", total_gols)
+    with col2:
+        st.metric("👤 Jogadores que Marcaram", total_artilheiros)
+    with col3:
+        if top_artilheiros:
+            artilheiro_maximo = top_artilheiros[0]
+            st.metric("🥇 Artilheiro", f"{artilheiro_maximo[0]} - {artilheiro_maximo[2]} gols")
+    
+    # Tabela de artilheiros
+    st.markdown("### 🏆 Top 20 Artilheiros")
+    
+    # Cabeçalho da tabela
+    cols = st.columns([0.8, 3.5, 2.5, 1.2])
+    headers = ["#", "Jogador", "Time", "Gols"]
+    
+    for col, header in zip(cols, headers):
+        col.markdown(f"**{header}**")
+    
+    # Linhas da tabela
+    for idx, (nome_jogador, nome_time, gols) in enumerate(top_artilheiros):
+        cols = st.columns([0.8, 3.5, 2.5, 1.2])
+        
+        # Posição com emoji especial para os primeiros
+        if idx == 0:
+            cols[0].markdown("🥇")
+        elif idx == 1:
+            cols[0].markdown("🥈")
+        elif idx == 2:
+            cols[0].markdown("🥉")
+        else:
+            cols[0].write(f"**{idx + 1}º**")
+        
+        # Nome do jogador
+        cols[1].markdown(f"**{nome_jogador}**")
+        
+        # Time com logo (se disponível)
+        logo_html = ""
+        for clube in clubes.values():
+            if clube['nome'] == nome_time and clube.get('logo_base64'):
+                logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">'
+                break
+        
+        cols[2].markdown(f'{logo_html}{nome_time}', unsafe_allow_html=True)
+        
+        # Número de gols com destaque
+        if gols >= 10:
+            cols[3].markdown(f'<span style="color: #ff6b6b; font-weight: bold; font-size: 1.1em;">{gols}</span>', unsafe_allow_html=True)
+        elif gols >= 5:
+            cols[3].markdown(f'<span style="color: #4ecdc4; font-weight: bold;">{gols}</span>', unsafe_allow_html=True)
+        else:
+            cols[3].markdown(f'**{gols}**')
+    
+    # Estatísticas adicionais em expander
+    with st.expander("📊 Estatísticas Detalhadas dos Artilheiros"):
+        
+        # Distribuição por time
+        st.markdown("#### 🏟️ Gols por Time")
+        gols_por_time = {}
+        for nome_jogador, nome_time, gols in artilheiros:
+            if nome_time in gols_por_time:
+                gols_por_time[nome_time] += gols
+            else:
+                gols_por_time[nome_time] = gols
+        
+        # Ordenar times por total de gols
+        times_ordenados = sorted(gols_por_time.items(), key=lambda x: x[1], reverse=True)
+        
+        for i, (time, total_gols) in enumerate(times_ordenados):
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                # Buscar logo do time
+                logo_html = ""
+                for clube in clubes.values():
+                    if clube['nome'] == time and clube.get('logo_base64'):
+                        logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">'
+                        break
+                st.markdown(f"{i+1}º {logo_html}{time}", unsafe_allow_html=True)
+            with col2:
+                st.markdown(f"**{total_gols} gols**")
+        
+        # Estatísticas de distribuição
+        st.markdown("#### 📈 Distribuição de Gols")
+        
+        if artilheiros:
+            max_gols = max(dados[2] for dados in artilheiros)
+            min_gols = min(dados[2] for dados in artilheiros)
+            media_gols = total_gols / total_artilheiros
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Maior Artilheiro", f"{max_gols} gols")
+            with col2:
+                st.metric("Menor Artilheiro", f"{min_gols} gol{'s' if min_gols > 1 else ''}")
+            with col3:
+                st.metric("Média por Jogador", f"{media_gols:.1f} gols")
+            
+            # Distribuição por faixas de gols
+            faixas = {
+                "10+ gols": len([x for x in artilheiros if x[2] >= 10]),
+                "5-9 gols": len([x for x in artilheiros if 5 <= x[2] <= 9]),
+                "3-4 gols": len([x for x in artilheiros if 3 <= x[2] <= 4]),
+                "1-2 gols": len([x for x in artilheiros if 1 <= x[2] <= 2])
+            }
+            
+            st.markdown("**Jogadores por faixa de gols:**")
+            for faixa, quantidade in faixas.items():
+                if quantidade > 0:
+                    st.write(f"• {faixa}: {quantidade} jogador{'es' if quantidade > 1 else ''}")
 
 def salvar_historico_liga(dados_liga):
     """Salva o histórico de uma liga realizada."""
@@ -474,7 +661,13 @@ def pagina_ligas(clubes):
                 # Exibir classificação completa
                 exibir_classificacao_liga_com_logos(tabela, clubes)
                 
-                # Salvar dados da liga no histórico
+                # ===== NOVA FUNCIONALIDADE: EXIBIR ARTILHEIROS =====
+                st.markdown("---")
+                exibir_artilheiros_liga(partidas, clubes, top_n=20)
+                
+                # Salvar dados da liga no histórico (agora incluindo artilheiros)
+                artilheiros_liga = calcular_artilheiros_liga(partidas)
+                
                 dados_liga = {
                     'data': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                     'times_participantes': times_selecionados,
@@ -483,6 +676,7 @@ def pagina_ligas(clubes):
                     'campeao': campeao,
                     'vice': vice,
                     'classificacao_completa': tabela.to_dict('records'),
+                    'artilheiros': artilheiros_liga[:10],  # Salvar top 10 artilheiros
                     'partidas': partidas
                 }
                 
@@ -490,7 +684,7 @@ def pagina_ligas(clubes):
                     st.success("💾 Liga salva no histórico!")
 
 def exibir_hall_da_fama_ligas(clubes):
-    """Exibe o hall da fama das ligas (campeões e vices)."""
+    """Exibe o hall da fama das ligas (campeões, vices e artilheiros)."""
     st.header("👑 Hall da Fama - Ligas")
     
     historico = carregar_historico_ligas()
@@ -499,92 +693,261 @@ def exibir_hall_da_fama_ligas(clubes):
         st.info("📝 Nenhuma liga foi realizada ainda. Simule uma liga primeiro!")
         return
     
-    # Contar títulos
+    # Contar títulos, vices e artilheiros
     titulos = {}
     vices = {}
+    artilheiros_historicos = {}  # Contador geral de gols por jogador
+    artilheiros_por_liga = []    # Lista de artilheiros de cada liga
     
-    for liga in historico:
+    for i, liga in enumerate(historico):
         campeao = liga.get('campeao', '')
         vice = liga.get('vice', '')
         
+        # Contar títulos e vices
         if campeao:
             titulos[campeao] = titulos.get(campeao, 0) + 1
         if vice:
             vices[vice] = vices.get(vice, 0) + 1
+        
+        # Processar artilheiros da liga
+        artilheiros_liga = liga.get('artilheiros', [])
+        if artilheiros_liga:
+            # Encontrar o artilheiro principal (primeiro da lista)
+            if len(artilheiros_liga) > 0:
+                principal = artilheiros_liga[0]
+                if len(principal) >= 3:  # (nome, time, gols)
+                    artilheiro_info = {
+                        'liga_numero': i + 1,
+                        'data': liga.get('data', 'Data não disponível'),
+                        'nome': principal[0],
+                        'time': principal[1], 
+                        'gols': principal[2],
+                        'formato': liga.get('formato', 'N/A')
+                    }
+                    artilheiros_por_liga.append(artilheiro_info)
+            
+            # Contar gols históricos de todos os jogadores
+            for artilheiro_data in artilheiros_liga:
+                if len(artilheiro_data) >= 3:
+                    nome = artilheiro_data[0]
+                    time = artilheiro_data[1]
+                    gols = artilheiro_data[2]
+                    
+                    # Chave única para jogador
+                    chave_jogador = f"{nome}|{time}"
+                    
+                    if chave_jogador in artilheiros_historicos:
+                        artilheiros_historicos[chave_jogador]['gols_total'] += gols
+                        artilheiros_historicos[chave_jogador]['ligas_participou'] += 1
+                    else:
+                        artilheiros_historicos[chave_jogador] = {
+                            'nome': nome,
+                            'time': time,
+                            'gols_total': gols,
+                            'ligas_participou': 1
+                        }
     
     # Exibir estatísticas gerais
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.metric("🏆 Ligas Realizadas", len(historico))
     with col2:
         st.metric("👑 Times Campeões", len(titulos))
     with col3:
         st.metric("🥈 Times Vice-campeões", len(vices))
+    with col4:
+        total_artilheiros = len(artilheiros_historicos)
+        st.metric("⚽ Artilheiros Únicos", total_artilheiros)
     
-    # Hall da Fama de Campeões
-    if titulos:
-        st.subheader("🏆 Ranking de Campeões")
-        campeoes_ordenados = sorted(titulos.items(), key=lambda x: x[1], reverse=True)
-        
-        for i, (time, quantidade) in enumerate(campeoes_ordenados):
-            # Buscar logo do time
-            logo_html = ""
-            for clube in clubes.values():
-                if clube['nome'] == time and clube.get('logo_base64'):
-                    logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 25px; height: 25px; margin-right: 8px; vertical-align: middle;">'
-                    break
+    # Criar abas para diferentes seções
+    tab1, tab2, tab3, tab4 = st.tabs(["🏆 Campeões", "🥈 Vice-campeões", "⚽ Artilheiros Históricos", "📚 Histórico Completo"])
+    
+    # ===== ABA 1: CAMPEÕES =====
+    with tab1:
+        if titulos:
+            st.subheader("🏆 Ranking de Campeões")
+            campeoes_ordenados = sorted(titulos.items(), key=lambda x: x[1], reverse=True)
             
-            # Emoji especial para os primeiros colocados
-            if i == 0:
-                emoji = "👑"
-            elif i == 1:
-                emoji = "🥇"
-            elif i == 2:
-                emoji = "🥈"
-            else:
-                emoji = "🏆"
+            for i, (time, quantidade) in enumerate(campeoes_ordenados):
+                # Buscar logo do time
+                logo_html = ""
+                for clube in clubes.values():
+                    if clube['nome'] == time and clube.get('logo_base64'):
+                        logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 25px; height: 25px; margin-right: 8px; vertical-align: middle;">'
+                        break
+                
+                # Emoji especial para os primeiros colocados
+                if i == 0:
+                    emoji = "👑"
+                elif i == 1:
+                    emoji = "🥇"
+                elif i == 2:
+                    emoji = "🥈"
+                else:
+                    emoji = "🏆"
+                
+                st.markdown(
+                    f"""<div style="display: flex; align-items: center; margin-bottom: 10px; 
+                                 padding: 10px; background-color: #f0f2f6; border-radius: 5px;">
+                       <div style="width: 30px;">{emoji}</div>
+                       {logo_html}
+                       <div style="flex: 1; font-weight: bold;">{time}</div>
+                       <div style="width: 80px; text-align: right; font-weight: bold;">
+                           {quantidade} título{'s' if quantidade > 1 else ''}
+                       </div>
+                    </div>""",
+                    unsafe_allow_html=True
+                )
+    
+    # ===== ABA 2: VICE-CAMPEÕES =====
+    with tab2:
+        if vices:
+            st.subheader("🥈 Ranking de Vice-campeões")
+            vices_ordenados = sorted(vices.items(), key=lambda x: x[1], reverse=True)
             
-            st.markdown(
-                f"""<div style="display: flex; align-items: center; margin-bottom: 10px; 
-                             padding: 10px; background-color: #f0f2f6; border-radius: 5px;">
-                   <div style="width: 30px;">{emoji}</div>
-                   {logo_html}
-                   <div style="flex: 1; font-weight: bold;">{time}</div>
-                   <div style="width: 80px; text-align: right; font-weight: bold;">
-                       {quantidade} título{'s' if quantidade > 1 else ''}
-                   </div>
-                </div>""",
-                unsafe_allow_html=True
+            for time, quantidade in vices_ordenados:
+                # Buscar logo do time
+                logo_html = ""
+                for clube in clubes.values():
+                    if clube['nome'] == time and clube.get('logo_base64'):
+                        logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 25px; height: 25px; margin-right: 8px; vertical-align: middle;">'
+                        break
+                
+                st.markdown(
+                    f"""<div style="display: flex; align-items: center; margin-bottom: 8px; 
+                                 padding: 8px; background-color: #f8f9fa; border-radius: 5px;">
+                       <div style="width: 30px;">🥈</div>
+                       {logo_html}
+                       <div style="flex: 1;">{time}</div>
+                       <div style="width: 80px; text-align: right;">
+                           {quantidade} vice{'s' if quantidade > 1 else ''}
+                       </div>
+                    </div>""",
+                    unsafe_allow_html=True
+                )
+    
+    # ===== ABA 3: ARTILHEIROS HISTÓRICOS =====
+    with tab3:
+        # Seção 1: Ranking Geral de Artilheiros
+        if artilheiros_historicos:
+            st.subheader("🏅 Ranking Histórico de Artilheiros")
+            st.caption("Jogadores com mais gols em todas as ligas realizadas")
+            
+            # Ordenar por gols totais
+            artilheiros_ordenados = sorted(
+                artilheiros_historicos.values(), 
+                key=lambda x: (-x['gols_total'], -x['ligas_participou'], x['nome'])
             )
-    
-    # Hall da Fama de Vices
-    if vices:
-        st.subheader("🥈 Ranking de Vice-campeões")
-        vices_ordenados = sorted(vices.items(), key=lambda x: x[1], reverse=True)
-        
-        for time, quantidade in vices_ordenados:
-            # Buscar logo do time
-            logo_html = ""
-            for clube in clubes.values():
-                if clube['nome'] == time and clube.get('logo_base64'):
-                    logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 25px; height: 25px; margin-right: 8px; vertical-align: middle;">'
-                    break
             
-            st.markdown(
-                f"""<div style="display: flex; align-items: center; margin-bottom: 8px; 
-                             padding: 8px; background-color: #f8f9fa; border-radius: 5px;">
-                   <div style="width: 30px;">🥈</div>
-                   {logo_html}
-                   <div style="flex: 1;">{time}</div>
-                   <div style="width: 80px; text-align: right;">
-                       {quantidade} vice{'s' if quantidade > 1 else ''}
-                   </div>
-                </div>""",
-                unsafe_allow_html=True
-            )
+            # Exibir top 15 artilheiros históricos
+            top_artilheiros = artilheiros_ordenados[:15]
+            
+            # Cabeçalho da tabela
+            cols = st.columns([0.8, 3, 2.5, 1.2, 1.5])
+            headers = ["#", "Jogador", "Time", "Gols", "Ligas"]
+            
+            for col, header in zip(cols, headers):
+                col.markdown(f"**{header}**")
+            
+            # Linhas da tabela
+            for idx, artilheiro in enumerate(top_artilheiros):
+                cols = st.columns([0.8, 3, 2.5, 1.2, 1.5])
+                
+                # Posição com medalhas
+                if idx == 0:
+                    cols[0].markdown("🥇")
+                elif idx == 1:
+                    cols[0].markdown("🥈")
+                elif idx == 2:
+                    cols[0].markdown("🥉")
+                else:
+                    cols[0].write(f"**{idx + 1}º**")
+                
+                # Nome do jogador
+                cols[1].markdown(f"**{artilheiro['nome']}**")
+                
+                # Time com logo
+                nome_time = artilheiro['time']
+                logo_html = ""
+                for clube in clubes.values():
+                    if clube['nome'] == nome_time and clube.get('logo_base64'):
+                        logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">'
+                        break
+                
+                cols[2].markdown(f'{logo_html}{nome_time}', unsafe_allow_html=True)
+                
+                # Gols com destaque
+                gols_total = artilheiro['gols_total']
+                if gols_total >= 20:
+                    cols[3].markdown(f'<span style="color: #ff6b6b; font-weight: bold; font-size: 1.1em;">{gols_total}</span>', unsafe_allow_html=True)
+                elif gols_total >= 10:
+                    cols[3].markdown(f'<span style="color: #4ecdc4; font-weight: bold;">{gols_total}</span>', unsafe_allow_html=True)
+                else:
+                    cols[3].markdown(f'**{gols_total}**')
+                
+                # Número de ligas
+                ligas_participou = artilheiro['ligas_participou']
+                cols[4].write(f"{ligas_participou} liga{'s' if ligas_participou > 1 else ''}")
+        
+        # Seção 2: Artilheiros por Liga
+        st.markdown("---")
+        if artilheiros_por_liga:
+            st.subheader("🏆 Artilheiros por Edição")
+            st.caption("Jogador que mais marcou gols em cada liga realizada")
+            
+            # Reverter ordem para mostrar as ligas mais recentes primeiro
+            artilheiros_por_liga_reversed = list(reversed(artilheiros_por_liga))
+            
+            for artilheiro in artilheiros_por_liga_reversed:
+                # Container para cada liga
+                with st.container():
+                    col1, col2 = st.columns([3, 1])
+                    
+                    with col1:
+                        # Buscar logo do time
+                        logo_html = ""
+                        for clube in clubes.values():
+                            if clube['nome'] == artilheiro['time'] and clube.get('logo_base64'):
+                                logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 25px; height: 25px; margin-right: 8px; vertical-align: middle;">'
+                                break
+                        
+                        st.markdown(
+                            f"""<div style="padding: 12px; background-color: #f8f9fa; border-radius: 8px; margin-bottom: 8px;">
+                               <div style="display: flex; align-items: center;">
+                                   <div style="margin-right: 15px;">
+                                       <strong>Liga #{artilheiro['liga_numero']}</strong><br>
+                                       <small style="color: #666;">{artilheiro['data'][:10]}</small>
+                                   </div>
+                                   <div style="margin-right: 15px;">⚽</div>
+                                   {logo_html}
+                                   <div>
+                                       <strong>{artilheiro['nome']}</strong><br>
+                                       <small>{artilheiro['time']}</small>
+                                   </div>
+                               </div>
+                            </div>""",
+                            unsafe_allow_html=True
+                        )
+                    
+                    with col2:
+                        st.markdown(
+                            f"""<div style="text-align: center; padding: 12px;">
+                               <div style="font-size: 1.5em; font-weight: bold; color: #ff6b6b;">
+                                   {artilheiro['gols']}
+                               </div>
+                               <div style="font-size: 0.8em; color: #666;">
+                                   gol{'s' if artilheiro['gols'] > 1 else ''}
+                               </div>
+                            </div>""",
+                            unsafe_allow_html=True
+                        )
+        else:
+            st.info("📊 Nenhum dado de artilheiro encontrado nas ligas anteriores.")
     
-    # Histórico de ligas
-    if st.expander("📚 Ver histórico completo de ligas"):
+    # ===== ABA 4: HISTÓRICO COMPLETO =====
+    with tab4:
+        st.subheader("📚 Histórico Completo de Ligas")
+        
         for i, liga in enumerate(reversed(historico), 1):
             data = liga.get('data', 'Data não disponível')
             campeao = liga.get('campeao', 'N/A')
@@ -592,11 +955,38 @@ def exibir_hall_da_fama_ligas(clubes):
             formato = liga.get('formato', 'N/A')
             total_jogos = liga.get('total_jogos', 'N/A')
             
-            st.markdown(f"""
-            **Liga #{len(historico) - i + 1}** - {data}
-            - 🏆 **Campeão:** {campeao}
-            - 🥈 **Vice:** {vice}
-            - 📊 **Formato:** {formato}
-            - ⚽ **Total de jogos:** {total_jogos}
-            ---
-            """)
+            # Encontrar artilheiro desta liga
+            artilheiro_info = None
+            for art in artilheiros_por_liga:
+                if art['liga_numero'] == len(historico) - i + 1:
+                    artilheiro_info = art
+                    break
+            
+            # Container para cada liga
+            with st.expander(f"🏆 Liga #{len(historico) - i + 1} - {data[:10]}"):
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.markdown(f"""
+                    **🏆 Campeão:** {campeao}
+                    **🥈 Vice:** {vice}
+                    **📊 Formato:** {formato}
+                    **⚽ Total de jogos:** {total_jogos}
+                    """)
+                
+                with col2:
+                    if artilheiro_info:
+                        # Buscar logo do time do artilheiro
+                        logo_html = ""
+                        for clube in clubes.values():
+                            if clube['nome'] == artilheiro_info['time'] and clube.get('logo_base64'):
+                                logo_html = f'<img src="data:image/png;base64,{clube["logo_base64"]}" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">'
+                                break
+                        
+                        st.markdown(f"""
+                        **⚽ Artilheiro:** {artilheiro_info['nome']}
+                        **🏟️ Time:** {logo_html}{artilheiro_info['time']}
+                        **🥅 Gols:** {artilheiro_info['gols']}
+                        """, unsafe_allow_html=True)
+                    else:
+                        st.markdown("**⚽ Artilheiro:** Dados não disponíveis")
