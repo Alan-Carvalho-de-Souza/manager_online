@@ -6,7 +6,7 @@ import os
 import random
 from datetime import datetime, timedelta
 from utils.io import carregar_historico  # APENAS esta função existe
-from app.simulacao_automatica import simular_partida_automatica
+from app.simulacao_otimizada import simular_partida_automatica
 import time
 
 def criar_diretorio_ligas():
