@@ -465,7 +465,7 @@ def main():
                                 
                                 <div style="text-align: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #dee2e6;">
                                     <small style="color: #6c757d;">
-                                        📅 {partida['Data']} | {partida['Vencedor']}
+                                        📅 {partida['Data']} | {partida['Resultado']}
                                     </small>
                                 </div>
                                 
